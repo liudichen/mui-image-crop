@@ -1,0 +1,47 @@
+{
+  "name": "mui-image-crop",
+  "version": "0.1.0",
+  "author": {
+    "name": "liudichen",
+    "email": "liudichen@foxmail.com",
+    "url": "https://www.iimm.ink"
+  },
+  "description": "Mui image crop",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/mui-image-crop.umd.js",
+  "module": "./dist/mui-image-crop.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/mui-image-crop.es.js",
+      "require": "./dist/mui-image-crop.umd.js"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.9",
+    "@babel/eslint-parser": "^7.17.0",
+    "@babel/preset-react": "^7.16.7",
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@mui/material": "^5.6.0",
+    "@tabler/icons": "^1.63.0",
+    "@vitejs/plugin-react": "^1.0.7",
+    "ahooks": "^3.3.0",
+    "classnames": "^2.3.1",
+    "eslint": "^8.12.0",
+    "eslint-config-egg": "^11.0.1",
+    "eslint-plugin-react": "^7.29.4",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-dropzone": "^12.0.4",
+    "react-easy-crop": "^4.1.4",
+    "vite": "^2.9.0"
+  }
+}
