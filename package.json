@@ -42,6 +42,8 @@
     "react-dom": "^17.0.2",
     "react-dropzone": "^12.0.4",
     "react-easy-crop": "^4.1.4",
-    "vite": "^2.9.0"
+    "sass": "^1.50.0",
+    "vite": "^2.9.0",
+    "vite-plugin-libcss": "^1.0.5"
   }
 }

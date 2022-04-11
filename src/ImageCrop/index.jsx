@@ -12,6 +12,7 @@ import ToolbarRender from './CropDialog/ToolbarRender';
 import ActionsRender from './CropDialog/ActionsRender';
 import TitleRender from './CropDialog/TitleRender';
 import UploaderChild from './UploaderChild';
+import './style.scss';
 
 const ImageCrop = (props) => {
   const {
