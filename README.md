@@ -1,6 +1,7 @@
 # mui-image-crop
 
 使用MUI(@mui/material)时类似antd Upload组件picture-card预览样式的image Crop。
+默认具有缩放、旋转、宽高比工具栏，支持自定义
 
 > 主要是自用，默认预览样式部分直接使用的antd upload组件的picture-card的样式。
 
