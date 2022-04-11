@@ -117,9 +117,6 @@ ImageCrop.defaultProps = {
   accept: 'image/*',
   qulity: 0.96,
   title: 'Image Crop',
-  imageCropDialogProps: {},
-  cropperContainerStyle: {},
-  dialogContentRootStyle: {},
   aspectMarks: [
     { value: 0.25, label: '1:4' },
     { value: 0.33, label: '1:3' },

@@ -4,7 +4,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-31 08:54:41
- * @LastEditTime: 2022-04-02 17:16:20
+ * @LastEditTime: 2022-04-11 21:07:23
  */
 import PropTypes from 'prop-types';
 import { useState, useRef } from 'react';
@@ -79,7 +79,7 @@ const CropDialog = (props) => {
   });
   return (
     <Dialog
-      {...{ maxWidth: 'md', ...dialogProps, open, onClose }}
+      {...{ maxWidth: 'md', ...(dialogProps || {}), open, onClose }}
     >
       <DialogTitle>
         { RenderTitle ? (
@@ -91,7 +91,7 @@ const CropDialog = (props) => {
       </DialogTitle>
       <DialogContent
         style={{
-          ...dialogContentRootStyle,
+          ...(dialogContentRootStyle || {}),
         }}
       >
         <Box
@@ -101,7 +101,7 @@ const CropDialog = (props) => {
             margin: 'auto',
             width: 300,
             height: 300,
-            ...cropperContainerStyle,
+            ...(cropperContainerStyle || {}),
           }}>
           <Cropper
             {...restProps}
