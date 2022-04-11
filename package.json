@@ -1,12 +1,33 @@
 {
   "name": "mui-image-crop",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": {
     "name": "liudichen",
     "email": "liudichen@foxmail.com",
     "url": "https://www.iimm.ink"
   },
-  "description": "Mui image crop",
+  "description": "Mui(@mui/material) image crop with preview, uploader and cropper, like antd Upload && antd-image-crop",
+    "repository": {
+    "url": "https://github.com/liudichen/mui-image-crop",
+    "type": "https"
+  },
+    "keywords": [
+    "mui",
+    "material-ui",
+    "antd",
+    "image crop",
+    "image-crop",
+    "iimm",
+    "www.iimm.ink",
+    "liudichen",
+    "Upload",
+    "react",
+    "@mui/material",
+    "image cut",
+    "preview",
+    "dropzone",
+    "react"
+  ],
   "license": "MIT",
   "files": [
     "dist"
