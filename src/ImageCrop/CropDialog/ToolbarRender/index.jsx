@@ -3,10 +3,10 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-31 15:38:46
- * @LastEditTime: 2022-04-02 20:02:24
+ * @LastEditTime: 2022-04-15 21:04:18
  */
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useMemoizedFn, useCreation, useUpdate } from 'ahooks';
 import { Box, Slider, Stack } from '@mui/material';
 import { IconZoomIn, IconZoomOut, IconAspectRatio, IconRotate2, IconRotateClockwise2 } from '@tabler/icons';
