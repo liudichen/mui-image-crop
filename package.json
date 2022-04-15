@@ -7,11 +7,11 @@
     "url": "https://www.iimm.ink"
   },
   "description": "Mui(@mui/material) image crop with preview, uploader and cropper, like antd Upload && antd-image-crop",
-    "repository": {
+  "repository": {
     "url": "https://github.com/liudichen/mui-image-crop",
     "type": "https"
   },
-    "keywords": [
+  "keywords": [
     "mui",
     "material-ui",
     "antd",
@@ -53,6 +53,11 @@
     "@emotion/styled": "^11.8.1",
     "@mui/material": "^5.6.0",
     "@tabler/icons": "^1.63.0",
+    "@types/jest": "^27.4.1",
+    "@types/react": "^17.0.44",
+    "@types/react-dom": "^17.0.15",
+    "@typescript-eslint/eslint-plugin": "^5.19.0",
+    "@typescript-eslint/parser": "^5.19.0",
     "@vitejs/plugin-react": "^1.0.7",
     "ahooks": "^3.3.0",
     "classnames": "^2.3.1",
@@ -64,6 +69,7 @@
     "react-dropzone": "^12.0.4",
     "react-easy-crop": "^4.1.4",
     "sass": "^1.50.0",
+    "typescript": "^4.6.3",
     "vite": "^2.9.0",
     "vite-plugin-libcss": "^1.0.5"
   }

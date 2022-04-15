@@ -15,14 +15,22 @@ module.exports = {
         '@babel/preset-react',
       ],
     },
-    ecmaFeature: {
-      jsx: true,
-    },
   },
   plugins: [
     'react',
   ],
+  overrides: [
+    {
+      files: [ '*.ts' ],
+      extends: 'eslint-config-egg/typescript',
+      parser: '@typescript-eslint/parser',
+      plugins: [
+        '@typescript-eslint/eslint-plugin',
+      ],
+    },
+  ],
   rules: {
+    'react/jsx-uses-react': 2,
     'react/jsx-uses-vars': 'error',
     'generator-star-spacing': 'off',
     'babel/generator-star-spacing': 'off',
