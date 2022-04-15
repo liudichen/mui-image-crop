@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ValueType, mark } from '../../../types';
+import { ValueType, mark } from '../../types';
 
 export interface ToolbarRenderProps {
   zoom?: number,
@@ -24,6 +24,6 @@ export interface ToolbarRenderProps {
   onFinish: (value: ValueType) => void;
 }
 
-declare const ToolbarRender: React.FC<ToolbarRenderProps>;
+declare const ToolbarRender: React.FunctionComponent<ToolbarRenderProps>;
 
 export default ToolbarRender;

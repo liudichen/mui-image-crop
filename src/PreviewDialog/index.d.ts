@@ -13,6 +13,6 @@ export interface PreviewDialogProps extends DialogProps {
   filename?: string,
 }
 
-declare const PreviewDialog: React.FC<PreviewDialogProps>;
+declare const PreviewDialog: React.FunctionComponent<PreviewDialogProps>;
 
 export default PreviewDialog;

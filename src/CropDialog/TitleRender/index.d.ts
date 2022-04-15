@@ -12,6 +12,6 @@ export interface TitleRenderProps {
   onClose?: () => void,
 }
 
-declare const TitleRender: React.FC<TitleRenderProps>;
+declare const TitleRender: React.FunctionComponent<TitleRenderProps>;
 
 export default TitleRender;

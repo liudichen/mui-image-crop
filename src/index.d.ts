@@ -3,16 +3,22 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-15 22:01:53
- * @LastEditTime: 2022-04-15 22:33:04
+ * @LastEditTime: 2022-04-15 23:36:09
  */
 import React from 'react';
 import { CropperProps } from 'react-easy-crop';
 import { DialogProps } from '@mui/material';
 
-import { ImageCardProps, UploaderProps, ValueType, mark } from '../types';
-import TitleRender from './CropDialog/TitleRender';
-import ToolbarRender from './CropDialog/ToolbarRender';
-import ActionsRender from './CropDialog/ActionsRender';
+import { ImageCardProps, UploaderProps, ValueType, mark } from './types';
+import TitleRender, { TitleRenderProps } from './CropDialog/TitleRender';
+import ToolbarRender, { ToolbarRenderProps } from './CropDialog/ToolbarRender';
+import ActionsRender, { ActionsRenderProps } from './CropDialog/ActionsRender';
+
+export {
+  TitleRenderProps,
+  ToolbarRenderProps,
+  ActionsRenderProps,
+};
 
 interface cropActionsProps {
   resetText?: React.ReactNode,
@@ -60,18 +66,6 @@ export interface ImageCropProps extends CropperProps {
   onFinish?: (value: ValueType) => void,
 }
 
-declare const ImageCrop: React.FC<ImageCropProps>;
+declare const ImageCrop: React.FunctionComponent<ImageCropProps>;
 
 export default ImageCrop;
-
-export {
-  ActionsRenderProps,
-} from './CropDialog/ActionsRender';
-
-export {
-  TitleRenderProps,
-} from './CropDialog/TitleRender';
-
-export {
-  ToolbarRenderProps,
-} from './CropDialog/ToolbarRender';

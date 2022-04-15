@@ -3,10 +3,10 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-15 21:07:40
- * @LastEditTime: 2022-04-15 21:16:37
+ * @LastEditTime: 2022-04-15 23:32:50
  */
 import React from 'react';
-import { ValueType } from '../../../types';
+import { ValueType } from '../../types';
 
 export interface ActionsRenderProps {
   onReset?: () => void,
@@ -17,6 +17,6 @@ export interface ActionsRenderProps {
   cancel?: React.ReactNode,
 }
 
-declare const ActionsRender: React.FC<ActionsRenderProps>;
+declare const ActionsRender: React.FunctionComponent<ActionsRenderProps>;
 
 export default ActionsRender;

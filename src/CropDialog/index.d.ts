@@ -3,13 +3,13 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-15 21:17:25
- * @LastEditTime: 2022-04-15 22:18:22
+ * @LastEditTime: 2022-04-15 23:32:52
  */
 import React from 'react';
 import { CropperProps } from 'react-easy-crop';
 import { DialogProps } from '@mui/material';
 
-import { mark } from '../../types';
+import { mark } from '../types';
 import TitleRender from './TitleRender';
 import ToolbarRender from './ToolbarRender';
 import ActionsRender from './ActionsRender';
@@ -41,6 +41,6 @@ export interface CropDialogProps extends Omit<CropperProps, 'image'> {
   dialogContentRootStyle?: object,
 }
 
-declare const CropDialog: React.FC<CropDialogProps>;
+declare const CropDialog: React.FunctionComponent<CropDialogProps>;
 
 export default CropDialog;

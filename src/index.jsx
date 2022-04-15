@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useControllableValue, useMemoizedFn } from 'ahooks';
 
 import { fileToBase64, generateFileDownload } from './utils';
@@ -12,7 +12,7 @@ import ToolbarRender from './CropDialog/ToolbarRender';
 import ActionsRender from './CropDialog/ActionsRender';
 import TitleRender from './CropDialog/TitleRender';
 import UploaderChild from './UploaderChild';
-import './style.scss';
+import './style.css';
 
 const ImageCrop = (props) => {
   const {
