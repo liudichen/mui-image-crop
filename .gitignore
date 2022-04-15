@@ -22,3 +22,13 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# umi
+.umi
+.umi-production
+.umi-test
+.env.local
+
+/es
+/lib
+/docs-dist
