@@ -38,6 +38,7 @@ import 'mui-image-crop/dist/style.css';
 ## 自定义
 
 本组件可接收children，children会作为uploader（点击或拖拽上传）使用，无children时，默认为antd Upload组件的picture-card样式。也可以通过uploaderProps进行自定义容器样式，比如不需要预览，只需要一个按钮作为上传组件：
+
 ```javascript
 <ImageCrop
   preview={false}
@@ -74,7 +75,6 @@ import 'mui-image-crop/dist/style.css';
 
   accept: PropTypes.oneOfType([ PropTypes.string, PropTypes.arrayOf(PropTypes.string) ]),
 
-  cropActionsProps: PropTypes.shape(cropActionsPropTypes),
   imageCardProps: PropTypes.shape(imageCardPropTypes),
   uploaderProps: PropTypes.shape(uploaderPropsTypes),
 
@@ -84,6 +84,7 @@ import 'mui-image-crop/dist/style.css';
 ```
 
 其中`imageCropPropTypes`主要为`react-easy-crop`的props:
+
 ```javascript
 const imageCropPropTypes = {
   showGrid: PropTypes.bool, // 是否显示网格 true
@@ -145,17 +146,18 @@ const imageCropPropTypes = {
 ```
 
 `imageCropSelfDefinePropTypes`是一些自定义的props：
+
 ```javascript
 const imageCropSelfDefinePropTypes = {
   qulity: PropTypes.number,
   imageType: PropTypes.string, // 剪裁后图片类型，默认为原图片类型，如果不自持一般会自动置为 image/png
   title: PropTypes.node,  // 剪裁框的标题
-  RenderTitle: PropTypes.oneOfType([ PropTypes.element, PropTypes.func ]), // props: title
+  TitleRender: PropTypes.oneOfType([ PropTypes.element, PropTypes.func ]), // props: title
   showAspectToolbar: PropTypes.bool,  // 是否显示宽高比工具栏 
   showRotateToolbar: PropTypes.bool,  // 是否显示旋转工具栏
   showZoomToolbar: PropTypes.bool,    // 是否显示缩放工具栏
-  RenderToolbar: PropTypes.oneOfType([ PropTypes.element, PropTypes.func ]), // 工具栏组件，以下props会被注入 props:zoom, onZoomChange, minZoom, maxZoom, zoomStep, showZoomToolbar, rotation, onRotationChange, rotateStep, showRotateToolbar, aspect, onAspectChange, showAspectToolbar, aspectMarks, onReset, onClose, onFinish, width, defaultAspect
-  RenderActions: PropTypes.oneOfType([ PropTypes.element, PropTypes.func ]), // DialogActions组件，以下props会被注入： props: onReset, onClose, onFinish, resetText, okText, cancelText
+  ToolbarRender: PropTypes.oneOfType([ PropTypes.element, PropTypes.func ]), // 工具栏组件，以下props会被注入 props:zoom, onZoomChange, minZoom, maxZoom, zoomStep, showZoomToolbar, rotation, onRotationChange, rotateStep, showRotateToolbar, aspect, onAspectChange, showAspectToolbar, aspectMarks, onReset, onClose, onFinish, width, defaultAspect
+  ActionsRender: PropTypes.oneOfType([ PropTypes.element, PropTypes.func ]), // DialogActions组件，以下props会被注入： props: onReset, onClose, onFinish, resetText, okText, cancelText
   okText: PropTypes.node, // 确认按钮内容 OK
   resetText: PropTypes.node,  // 重置按钮内容 Reset
   cancelText: PropTypes.node, // 取消按钮内容 Cancel
@@ -177,6 +179,7 @@ const imageCropSelfDefinePropTypes = {
 ```
 
 `imageCardPropTypes`为剪裁图片后的预览卡片的相关样式(如果不需要预览可以`preview`置为false):
+
 ```javascript
 const imageCardPropTypes = {
   style: PropTypes.object,
@@ -197,6 +200,7 @@ const imageCardPropTypes = {
 ```
 
 `cropActionsPropTypes`为剪切窗口的底部按钮props：
+
 ```javascript
 const cropActionsPropTypes = {
   resetText: PropTypes.node,
@@ -205,6 +209,7 @@ const cropActionsPropTypes = {
 };
 ```
 `uploaderPropsTypes`为点击或拖拽上传组件的props(实际为`react-dropzone`的部分props)：
+
 ```javascript
 const uploaderPropsTypes = {
   style: PropTypes.object,

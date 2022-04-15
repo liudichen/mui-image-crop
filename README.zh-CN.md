@@ -150,12 +150,12 @@ const imageCropSelfDefinePropTypes = {
   qulity: PropTypes.number,
   imageType: PropTypes.string, // 剪裁后图片类型，默认为原图片类型，如果不自持一般会自动置为 image/png
   title: PropTypes.node,  // 剪裁框的标题
-  RenderTitle: PropTypes.oneOfType([ PropTypes.element, PropTypes.func ]), // props: title
+  TitleRender: PropTypes.oneOfType([ PropTypes.element, PropTypes.func ]), // props: title
   showAspectToolbar: PropTypes.bool,  // 是否显示宽高比工具栏 
   showRotateToolbar: PropTypes.bool,  // 是否显示旋转工具栏
   showZoomToolbar: PropTypes.bool,    // 是否显示缩放工具栏
-  RenderToolbar: PropTypes.oneOfType([ PropTypes.element, PropTypes.func ]), // 工具栏组件，以下props会被注入 props:zoom, onZoomChange, minZoom, maxZoom, zoomStep, showZoomToolbar, rotation, onRotationChange, rotateStep, showRotateToolbar, aspect, onAspectChange, showAspectToolbar, aspectMarks, onReset, onClose, onFinish, width, defaultAspect
-  RenderActions: PropTypes.oneOfType([ PropTypes.element, PropTypes.func ]), // DialogActions组件，以下props会被注入： props: onReset, onClose, onFinish, resetText, okText, cancelText
+  ToolbarRender: PropTypes.oneOfType([ PropTypes.element, PropTypes.func ]), // 工具栏组件，以下props会被注入 props:zoom, onZoomChange, minZoom, maxZoom, zoomStep, showZoomToolbar, rotation, onRotationChange, rotateStep, showRotateToolbar, aspect, onAspectChange, showAspectToolbar, aspectMarks, onReset, onClose, onFinish, width, defaultAspect
+  ActionsRender: PropTypes.oneOfType([ PropTypes.element, PropTypes.func ]), // DialogActions组件，以下props会被注入： props: onReset, onClose, onFinish, resetText, okText, cancelText
   okText: PropTypes.node, // 确认按钮内容 OK
   resetText: PropTypes.node,  // 重置按钮内容 Reset
   cancelText: PropTypes.node, // 取消按钮内容 Cancel

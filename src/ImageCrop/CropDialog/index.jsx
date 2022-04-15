@@ -4,7 +4,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-31 08:54:41
- * @LastEditTime: 2022-04-11 21:07:23
+ * @LastEditTime: 2022-04-15 21:34:31
  */
 import PropTypes from 'prop-types';
 import { useState, useRef } from 'react';
@@ -17,13 +17,13 @@ import { dialogPropTypes, imageCropPropTypes, imageCropSelfDefinePropTypes } fro
 
 const CropDialog = (props) => {
   const {
-    crop: cropProp, onCropChangeProp, onCropComplete: onCropCompleteProp,
+    crop: cropProp, onCropChange: onCropChangeProp, onCropComplete: onCropCompleteProp,
     imageInfo, qulity, imageType,
     showAspectToolbar, aspect: aspectProp, onAspectChange: onAspectChangeProp, aspectMarks, defaultAspect,
     showZoomToolbar, zoom: zoomProp, minZoom, maxZoom, zoomStep, onZoomChange: onZoomChangeProp,
     showRotateToolbar, rotation: rotationProp, onRotationChange: onRotationChangeProp, allowTouchRotate, rotateStep,
     open, onClose: onCloseProp, onFinish: onFinishProp, okText, cancelText, resetText,
-    RenderTitle, title, RenderActions, RenderToolbar,
+    TitleRender, title, ActionsRender, ToolbarRender,
     dialogProps, cropperContainerStyle, dialogContentRootStyle,
     ...restProps
   } = props;
@@ -82,8 +82,8 @@ const CropDialog = (props) => {
       {...{ maxWidth: 'md', ...(dialogProps || {}), open, onClose }}
     >
       <DialogTitle>
-        { RenderTitle ? (
-          <RenderTitle
+        { TitleRender ? (
+          <TitleRender
             title={title}
             onClose={onClose}
           />
@@ -118,8 +118,8 @@ const CropDialog = (props) => {
             onZoomChange={onZoomChange}
           />
         </Box>
-        {!!RenderToolbar && (
-          <RenderToolbar
+        {!!ToolbarRender && (
+          <ToolbarRender
             showAspectToolbar={showAspectToolbar}
             showRotateToolbar={showRotateToolbar}
             showZoomToolbar={showZoomToolbar}
@@ -142,8 +142,8 @@ const CropDialog = (props) => {
           />
         ) }
       </DialogContent>
-      { !!RenderActions && (
-        <RenderActions
+      { !!ActionsRender && (
+        <ActionsRender
           onReset={onReset}
           onClose={onClose}
           onFinish={onFinish}

@@ -3,8 +3,9 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-30 13:38:33
- * @LastEditTime: 2022-04-02 16:35:21
+ * @LastEditTime: 2022-04-15 21:46:44
  */
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useDropzone } from 'react-dropzone';
 import classNames from 'classnames';

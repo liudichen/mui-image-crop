@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useControllableValue, useMemoizedFn } from 'ahooks';
 
 import { fileToBase64, generateFileDownload } from './utils';
-import { imageCropPropTypes, cropActionsPropTypes, imageCropSelfDefinePropTypes, imageCardPropTypes, uploaderPropsTypes, imageCardDefaultProps, cropActionsDefaultProps } from './common';
+import { imageCropPropTypes, imageCropSelfDefinePropTypes, imageCardPropTypes, uploaderPropsTypes, imageCardDefaultProps, cropActionsDefaultProps, dialogPropTypes } from './common';
 import CropDialog from './CropDialog';
 import Uploader from './Uploader';
 import ImageCard from './ImageCard';
@@ -18,8 +18,8 @@ const ImageCrop = (props) => {
   const {
     accept, uploaderProps, children, disabled,
     filename, imageCardProps, error,
-    preview,
-    cropActionsProps, imageCropDialogProps, cropperContainerStyle, imageCropDialogContentRootStyle, imageType, onFinish: onFinishProp, defaultAspect: defaultAspectProp,
+    preview, previewDialogProps,
+    imageCropDialogProps, cropperContainerStyle, imageCropDialogContentRootStyle, imageType, onFinish: onFinishProp, defaultAspect: defaultAspectProp,
     ...restProps
   } = props;
   const [ imageInfo, setImageInfo ] = useState(null);
@@ -96,15 +96,18 @@ const ImageCrop = (props) => {
         filename={filename}
         imageType={imageType}
         defaultAspect={defaultAspect}
-        {...({ ...(cropActionsDefaultProps), ...(cropActionsProps || {}) })}
+        {...({ ...(cropActionsDefaultProps) })}
         {...restProps}
       />
       { preview && !!value?.url && (
         <PreviewDialog
           src={value.url}
-          open={openPreview}
-          onClose={() => setOpenPreview(false)}
           filename={value.name}
+          {...{
+            ...(previewDialogProps),
+            open: openPreview,
+            onClose: () => { setOpenPreview(false); previewDialogProps?.onClose?.(); },
+          }}
         />
       )}
     </>
@@ -137,9 +140,9 @@ ImageCrop.defaultProps = {
   showAspectToolbar: true,
   showRotateToolbar: true,
   showZoomToolbar: true,
-  RenderTitle: TitleRender,
-  RenderToolbar: ToolbarRender,
-  RenderActions: ActionsRender,
+  TitleRender,
+  ToolbarRender,
+  ActionsRender,
 };
 
 ImageCrop.propTypes = {
@@ -149,6 +152,10 @@ ImageCrop.propTypes = {
   error: PropTypes.bool,
 
   preview: PropTypes.bool, // true
+  previewDialogProps: PropTypes.shape({
+    ...dialogPropTypes,
+    onClose: PropTypes.func,
+  }),
 
   children: PropTypes.node,
   imageCropDialogProps: PropTypes.object,
@@ -157,7 +164,6 @@ ImageCrop.propTypes = {
 
   accept: PropTypes.oneOfType([ PropTypes.string, PropTypes.arrayOf(PropTypes.string) ]),
 
-  cropActionsProps: PropTypes.shape(cropActionsPropTypes),
   imageCardProps: PropTypes.shape(imageCardPropTypes),
   uploaderProps: PropTypes.shape(uploaderPropsTypes),
 

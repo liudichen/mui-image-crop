@@ -1,9 +1,6 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 
-interface mark {
-  value: number,
-  label: number | string | ReactNode,
-}
+import { ValueType, mark } from '../../../types';
 
 export interface ToolbarRenderProps {
   zoom?: number,
@@ -24,7 +21,7 @@ export interface ToolbarRenderProps {
   onReset?: () => void,
   onClose?: () => void,
   width?: number | string,
-  onFinish: (value: any) => void;
+  onFinish: (value: ValueType) => void;
 }
 
 declare const ToolbarRender: React.FC<ToolbarRenderProps>;
