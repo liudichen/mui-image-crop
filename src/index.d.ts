@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-15 22:01:53
- * @LastEditTime: 2022-04-16 19:33:17
+ * @LastEditTime: 2022-04-16 19:55:06
  */
 import React from 'react';
 import { CropperProps } from 'react-easy-crop';
@@ -12,7 +12,7 @@ import { DialogProps } from '@mui/material';
 import { ImageCardProps, UploaderProps, ValueType, mark } from './types';
 import TitleRender, { TitleRenderProps as cropTitleRenderProps } from './CropDialog/TitleRender';
 import ToolbarRender, { ToolbarRenderProps as cropToolbarRenderProps } from './CropDialog/ToolbarRender';
-import ActionsRender, { ActionsRenderProps } from './CropDialog/ActionsRender';
+import ActionsRender, { ActionsRenderProps as cropActionsRenderProps } from './CropDialog/ActionsRender';
 
 export {
   cropTitleRenderProps,
@@ -32,7 +32,6 @@ export interface ImageCropProps extends CropperProps {
   cropperContainerStyle?: object,
   imageCropDialogContentRootStyle?: object,
   accept?: string | string[],
-  cropActionsProps?: ActionsRenderProps,
   imageCardProps?: ImageCardProps,
   uploaderProps?: UploaderProps,
 
@@ -45,9 +44,14 @@ export interface ImageCropProps extends CropperProps {
   showZoomToolbar?: boolean,
   ToolbarRender?: typeof ToolbarRender | React.ReactNode,
   ActionsRender?: typeof ActionsRender | React.ReactNode,
-  okText?: React.ReactNode,
   resetText?: React.ReactNode,
+  okText?: React.ReactNode,
   cancelText?: React.ReactNode,
+  originText?: React.ReactNode,
+  showReset?: boolean,
+  showOk?: boolean,
+  showOk?: boolean,
+  showOrigin?: boolean,
   zoomLabel?: React.ReactNode,
   rotateLabel?: React.ReactNode,
   aspectLabel?: React.ReactNode,
