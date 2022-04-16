@@ -100,7 +100,6 @@ const ImageCrop = (props) => {
         filename={filename}
         imageType={imageType}
         defaultAspect={defaultAspect}
-        {...({ ...(cropActionsDefaultProps) })}
         {...restProps}
       />
       { preview && !!value?.url && (
@@ -147,6 +146,8 @@ ImageCrop.defaultProps = {
   TitleRender,
   ToolbarRender,
   ActionsRender,
+
+  ...cropActionsDefaultProps,
 };
 
 ImageCrop.propTypes = {

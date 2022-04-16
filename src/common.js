@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-02 15:14:17
- * @LastEditTime: 2022-04-16 20:01:33
+ * @LastEditTime: 2022-04-16 20:41:46
  */
 import PropTypes from 'prop-types';
 
@@ -172,6 +172,10 @@ const cropActionsDefaultProps = {
   okText: ' Ok ',
   resetText: 'Reset',
   cancelText: 'Cancel',
+  originText: 'Origin',
+  showOk: true,
+  showReset: true,
+  showCancel: true,
 };
 
 const uploaderPropsTypes = {
