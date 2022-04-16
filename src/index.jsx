@@ -147,6 +147,8 @@ ImageCrop.defaultProps = {
   ToolbarRender,
   ActionsRender,
 
+  imageCardProps: imageCardDefaultProps,
+
   ...cropActionsDefaultProps,
 };
 
