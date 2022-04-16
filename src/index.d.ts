@@ -3,28 +3,22 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-15 22:01:53
- * @LastEditTime: 2022-04-15 23:36:09
+ * @LastEditTime: 2022-04-16 19:33:17
  */
 import React from 'react';
 import { CropperProps } from 'react-easy-crop';
 import { DialogProps } from '@mui/material';
 
 import { ImageCardProps, UploaderProps, ValueType, mark } from './types';
-import TitleRender, { TitleRenderProps } from './CropDialog/TitleRender';
-import ToolbarRender, { ToolbarRenderProps } from './CropDialog/ToolbarRender';
+import TitleRender, { TitleRenderProps as cropTitleRenderProps } from './CropDialog/TitleRender';
+import ToolbarRender, { ToolbarRenderProps as cropToolbarRenderProps } from './CropDialog/ToolbarRender';
 import ActionsRender, { ActionsRenderProps } from './CropDialog/ActionsRender';
 
 export {
-  TitleRenderProps,
-  ToolbarRenderProps,
-  ActionsRenderProps,
+  cropTitleRenderProps,
+  cropToolbarRenderProps,
+  cropActionsRenderProps,
 };
-
-interface cropActionsProps {
-  resetText?: React.ReactNode,
-  okText?: React.ReactNode,
-  cancelText?: React.ReactNode,
-}
 
 export interface ImageCropProps extends CropperProps {
   value?: ValueType,
@@ -38,7 +32,7 @@ export interface ImageCropProps extends CropperProps {
   cropperContainerStyle?: object,
   imageCropDialogContentRootStyle?: object,
   accept?: string | string[],
-  cropActionsProps?: cropActionsProps,
+  cropActionsProps?: ActionsRenderProps,
   imageCardProps?: ImageCardProps,
   uploaderProps?: UploaderProps,
 
