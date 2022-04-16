@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-30 14:40:44
- * @LastEditTime: 2022-04-03 16:32:56
+ * @LastEditTime: 2022-04-16 20:33:07
  */
 const createImage = (url) => {
   return new Promise((resolve, reject) => {
@@ -24,6 +24,19 @@ const rotateSize = (width, height, rotation) => {
   return {
     width: Math.abs(Math.cos(rotRad) * width) + Math.abs(Math.sin(rotRad) * height),
     height: Math.abs(Math.sin(rotRad) * width) + Math.abs(Math.cos(rotRad) * height),
+  };
+};
+
+const getOriginImage = async (
+  imageInfo
+) => {
+  if (!imageInfo?.url) { return; }
+  const image = await createImage(imageInfo.url);
+  const { width, height } = image;
+  return {
+    ...imageInfo,
+    width,
+    height,
   };
 };
 
@@ -155,6 +168,7 @@ export {
   getRadianAngle,
   rotateSize,
   getCroppedImage,
+  getOriginImage,
   fileToBase64,
   generateFileDownload,
 };
