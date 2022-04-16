@@ -4,7 +4,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-31 08:54:41
- * @LastEditTime: 2022-04-15 21:34:31
+ * @LastEditTime: 2022-04-16 20:29:35
  */
 import PropTypes from 'prop-types';
 import { useState, useRef } from 'react';
@@ -13,7 +13,7 @@ import { Box, Dialog, DialogContent, DialogTitle } from '@mui/material';
 import Cropper from 'react-easy-crop';
 
 import { getCroppedImage } from '../utils';
-import { dialogPropTypes, imageCropPropTypes, imageCropSelfDefinePropTypes } from '../common';
+import { dialogPropTypes, imageCropPropTypes, imageCropSelfDefinePropTypes, cropActionsPropTypes } from '../common';
 
 const CropDialog = (props) => {
   const {
@@ -22,7 +22,7 @@ const CropDialog = (props) => {
     showAspectToolbar, aspect: aspectProp, onAspectChange: onAspectChangeProp, aspectMarks, defaultAspect,
     showZoomToolbar, zoom: zoomProp, minZoom, maxZoom, zoomStep, onZoomChange: onZoomChangeProp,
     showRotateToolbar, rotation: rotationProp, onRotationChange: onRotationChangeProp, allowTouchRotate, rotateStep,
-    open, onClose: onCloseProp, onFinish: onFinishProp, okText, cancelText, resetText,
+    open, onClose: onCloseProp, onFinish: onFinishProp, okText, cancelText, resetText, originText, showOk, showCancel, showReset, showOrigin,
     TitleRender, title, ActionsRender, ToolbarRender,
     dialogProps, cropperContainerStyle, dialogContentRootStyle,
     ...restProps
@@ -70,13 +70,18 @@ const CropDialog = (props) => {
     onCloseProp?.();
   });
   const onFinish = useMemoizedFn(async () => {
-    const res = await getCroppedImage(imageInfo.src, croppedAreaPixels, rotation, imageType ?? (imageInfo?.type || 'image/png'), imageInfo?.name || 'image.png', qulity);
+    const res = await getCroppedImage(imageInfo.url, croppedAreaPixels, rotation, imageType ?? (imageInfo?.type || 'image/png'), imageInfo?.name || 'image.png', qulity);
 
     const flag = await onFinishProp?.(res);
     if (flag !== false) {
       onClose();
     }
   });
+
+  const onKeepOrigin = useMemoizedFn(async () => {
+
+  });
+
   return (
     <Dialog
       {...{ maxWidth: 'md', ...(dialogProps || {}), open, onClose }}
@@ -105,7 +110,7 @@ const CropDialog = (props) => {
           }}>
           <Cropper
             {...restProps}
-            image={imageInfo?.src}
+            image={imageInfo?.url}
             crop={crop}
             rotation={rotation}
             zoom={zoom}
@@ -150,6 +155,12 @@ const CropDialog = (props) => {
           okText={okText}
           cancelText={cancelText}
           resetText={resetText}
+          originText={originText}
+          showOk={showOk}
+          showCancel={showCancel}
+          showReset={showReset}
+          showOrigin={showOrigin}
+          onKeepOrigin={onKeepOrigin}
         />
       )}
     </Dialog>
@@ -159,13 +170,18 @@ const CropDialog = (props) => {
 CropDialog.propTypes = {
   cropperContainerStyle: PropTypes.object,
   imageInfo: PropTypes.shape({
-    src: PropTypes.string,
+    url: PropTypes.string,
     name: PropTypes.string,
     type: PropTypes.string,
+    originFile: PropTypes.object,
+    size: PropTypes.number,
+    lastModified: PropTypes.any,
+    lastModifiedDate: PropTypes.any,
   }),
   dialogContentRootStyle: PropTypes.object,
 
   ...imageCropSelfDefinePropTypes,
+  ...cropActionsPropTypes,
 
   open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,

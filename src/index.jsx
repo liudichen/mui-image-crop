@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useControllableValue, useMemoizedFn } from 'ahooks';
 
 import { fileToBase64, generateFileDownload } from './utils';
-import { imageCropPropTypes, imageCropSelfDefinePropTypes, imageCardPropTypes, uploaderPropsTypes, imageCardDefaultProps, cropActionsDefaultProps, dialogPropTypes } from './common';
+import { imageCropPropTypes, imageCropSelfDefinePropTypes, imageCardPropTypes, uploaderPropsTypes, imageCardDefaultProps, cropActionsDefaultProps, dialogPropTypes, cropActionsPropTypes } from './common';
 import CropDialog from './CropDialog';
 import Uploader from './Uploader';
 import ImageCard from './ImageCard';
@@ -31,9 +31,13 @@ const ImageCrop = (props) => {
     if (acceptedFiles?.length) {
       const img = await fileToBase64(acceptedFiles[0]);
       setImageInfo({
-        src: img,
-        name: acceptedFiles[0].name,
-        type: acceptedFiles[0].type,
+        url: img,
+        originFile: acceptedFiles[0],
+        name: acceptedFiles[0]?.name,
+        type: acceptedFiles[0]?.type,
+        size: acceptedFiles[0]?.size,
+        lastModified: acceptedFiles[0]?.lastModified,
+        lastModifiedDate: acceptedFiles[0]?.lastModifiedDate,
       });
     }
   });
@@ -86,7 +90,7 @@ const ImageCrop = (props) => {
         />
       )}
       <CropDialog
-        open={!!imageInfo?.src}
+        open={!!imageInfo?.url}
         onClose={onClose}
         imageInfo={imageInfo}
         onFinish={onFinish}
@@ -157,8 +161,10 @@ ImageCrop.propTypes = {
     onClose: PropTypes.func,
   }),
 
+  ...cropActionsPropTypes,
+
   children: PropTypes.node,
-  imageCropDialogProps: PropTypes.object,
+  imageCropDialogProps: PropTypes.shape(dialogPropTypes),
   cropperContainerStyle: PropTypes.object,
   imageCropDialogContentRootStyle: PropTypes.object,
 
