@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-15 22:01:53
- * @LastEditTime: 2022-04-16 19:55:06
+ * @LastEditTime: 2022-04-16 21:42:52
  */
 import React from 'react';
 import { CropperProps } from 'react-easy-crop';
@@ -21,7 +21,20 @@ export {
 };
 
 export interface ImageCropProps extends CropperProps {
+  /**
+   * @description controlled property, cropped imageInfo object, and its type is { name: string, type: string, size: number, originFile: File, width: number, height :number, url: string }
+   * @description.zh-CN value 受控属性，为剪裁后的图片信息的对象， 类型为 { name: string, type: string, size: number, originFile: File, width: number, height :number, url: string }
+   * @default null
+   */
   value?: ValueType,
+
+
+  /**
+   * @description controlled property,trigged when value changes
+   * @description.zh-CN 受控属性，value变化的回调
+   * @param {value: { name: string, type: string, size: number, originFile: File, width: number, height :number, url: string }}
+   * @return {void}
+   */
   onChange?: (value: ValueType) => void,
   disabled?: boolean,
   filename?: string,
