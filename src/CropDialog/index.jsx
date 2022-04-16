@@ -4,7 +4,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-31 08:54:41
- * @LastEditTime: 2022-04-16 20:29:35
+ * @LastEditTime: 2022-04-16 20:36:30
  */
 import PropTypes from 'prop-types';
 import { useState, useRef } from 'react';
@@ -12,7 +12,7 @@ import { useMemoizedFn } from 'ahooks';
 import { Box, Dialog, DialogContent, DialogTitle } from '@mui/material';
 import Cropper from 'react-easy-crop';
 
-import { getCroppedImage } from '../utils';
+import { getCroppedImage, getOriginImage } from '../utils';
 import { dialogPropTypes, imageCropPropTypes, imageCropSelfDefinePropTypes, cropActionsPropTypes } from '../common';
 
 const CropDialog = (props) => {
@@ -79,7 +79,11 @@ const CropDialog = (props) => {
   });
 
   const onKeepOrigin = useMemoizedFn(async () => {
-
+    const res = await getOriginImage(imageInfo);
+    const flag = await onFinishProp?.(res);
+    if (flag !== false) {
+      onClose();
+    }
   });
 
   return (

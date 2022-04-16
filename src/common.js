@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-02 15:14:17
- * @LastEditTime: 2022-04-16 19:13:59
+ * @LastEditTime: 2022-04-16 20:01:33
  */
 import PropTypes from 'prop-types';
 
@@ -129,9 +129,6 @@ const imageCropSelfDefinePropTypes = {
   showZoomToolbar: PropTypes.bool,
   ToolbarRender: PropTypes.oneOfType([ PropTypes.element, PropTypes.func ]), // props:zoom, onZoomChange, minZoom, maxZoom, zoomStep, showZoomToolbar, rotation, onRotationChange, rotateStep, showRotateToolbar, aspect, onAspectChange, showAspectToolbar, aspectMarks, onReset, onClose, onFinish, width, defaultAspect
   ActionsRender: PropTypes.oneOfType([ PropTypes.element, PropTypes.func ]), // props: onReset, onClose, onFinish, resetText, okText, cancelText
-  okText: PropTypes.node,
-  resetText: PropTypes.node,
-  cancelText: PropTypes.node,
   zoomLabel: PropTypes.node,
   rotateLabel: PropTypes.node,
   aspectLabel: PropTypes.node,
