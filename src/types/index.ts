@@ -4,16 +4,20 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-15 21:12:59
- * @LastEditTime: 2022-04-15 22:17:51
+ * @LastEditTime: 2022-04-16 19:42:26
  */
 import React from 'react';
 
 export interface ValueType {
   size?: number,
   url?: string,
-  nmae?: string,
+  name?: string,
   type?: string,
   originFile?: File,
+  lastModified?: any,
+  lastModifiedDate?: any,
+  width?: number,
+  height?: number,
 }
 
 export type className = string | Function | (string | Function | object)[] | object;
