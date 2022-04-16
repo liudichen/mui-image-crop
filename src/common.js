@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-02 15:14:17
- * @LastEditTime: 2022-04-15 22:32:07
+ * @LastEditTime: 2022-04-16 19:13:59
  */
 import PropTypes from 'prop-types';
 
@@ -112,6 +112,11 @@ const cropActionsPropTypes = {
   resetText: PropTypes.node,
   okText: PropTypes.node,
   cancelText: PropTypes.node,
+  originText: PropTypes.node,
+  showReset: PropTypes.bool,
+  showOk: PropTypes.bool,
+  showCancel: PropTypes.bool,
+  showOrigin: PropTypes.bool,
 };
 
 const imageCropSelfDefinePropTypes = {
