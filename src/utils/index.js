@@ -1,10 +1,3 @@
-/*
- * @Description: https://codesandbox.io/s/react-easy-crop-custom-image-demo-forked-g27rnp?file=/src/canvasUtils.js:244-272
- * @Author: 柳涤尘 https://www.iimm.ink
- * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-03-30 14:40:44
- * @LastEditTime: 2022-04-16 20:33:07
- */
 const createImage = (url) => {
   return new Promise((resolve, reject) => {
     const image = new Image();

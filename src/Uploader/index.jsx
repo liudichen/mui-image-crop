@@ -29,8 +29,4 @@ const Uploader = (props) => {
   );
 };
 
-Uploader.defaultProps = {
-  accept: { 'image/*': [ '.jpg', '.jpeg', '.png', '.bmp' ] },
-};
-
 export default Uploader;

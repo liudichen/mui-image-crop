@@ -24,6 +24,6 @@ export interface ToolbarRenderProps {
   onFinish: (value: ValueType) => void;
 }
 
-declare const ToolbarRender: React.FunctionComponent<ToolbarRenderProps>;
+declare const ToolbarRender: React.FC<ToolbarRenderProps>;
 
 export default ToolbarRender;

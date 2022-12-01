@@ -1,16 +1,6 @@
-/*
- * @Description:
- * @Author: 柳涤尘 https://www.iimm.ink
- * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-04-02 14:43:30
- * @LastEditTime: 2022-04-15 21:55:04
- */
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import { IconLogout } from '@tabler/icons';
-
-import { dialogPropTypes } from '../common';
 
 const PreviewDialog = (props) => {
   const { src, open, onClose, filename, ...restProps } = props;
@@ -50,14 +40,6 @@ const PreviewDialog = (props) => {
       </DialogActions>
     </Dialog>
   );
-};
-
-PreviewDialog.propTypes = {
-  src: PropTypes.string,
-  open: PropTypes.bool,
-  onClose: PropTypes.func,
-  filename: PropTypes.string,
-  ...dialogPropTypes,
 };
 
 export default PreviewDialog;

@@ -1,19 +1,9 @@
-
-/*
- * @Description:
- * @Author: 柳涤尘 https://www.iimm.ink
- * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-03-31 08:54:41
- * @LastEditTime: 2022-04-16 20:36:30
- */
-import PropTypes from 'prop-types';
-import { useState, useRef } from 'react';
-import { useMemoizedFn } from 'ahooks';
+import React, { useRef } from 'react';
+import { useMemoizedFn, useSafeState } from 'ahooks';
 import { Box, Dialog, DialogContent, DialogTitle } from '@mui/material';
 import Cropper from 'react-easy-crop';
 
 import { getCroppedImage, getOriginImage } from '../utils';
-import { dialogPropTypes, imageCropPropTypes, imageCropSelfDefinePropTypes, cropActionsPropTypes } from '../common';
 
 const CropDialog = (props) => {
   const {
@@ -27,11 +17,11 @@ const CropDialog = (props) => {
     dialogProps, cropperContainerStyle, dialogContentRootStyle,
     ...restProps
   } = props;
-  const [ crop, setCrop ] = useState(cropProp ?? { x: 0, y: 0 });
-  const [ croppedAreaPixels, setCroppedAreaPixels ] = useState(props?.initialCroppedAreaPixels ?? null);
-  const [ zoom, setZoom ] = useState(zoomProp ?? 1);
-  const [ rotation, setRotation ] = useState(rotationProp ?? 0);
-  const [ aspect, setAspect ] = useState(aspectProp ?? defaultAspect);
+  const [ crop, setCrop ] = useSafeState(cropProp ?? { x: 0, y: 0 });
+  const [ croppedAreaPixels, setCroppedAreaPixels ] = useSafeState(props?.initialCroppedAreaPixels ?? null);
+  const [ zoom, setZoom ] = useSafeState(zoomProp ?? 1);
+  const [ rotation, setRotation ] = useSafeState(rotationProp ?? 0);
+  const [ aspect, setAspect ] = useSafeState(aspectProp ?? defaultAspect);
   const ref = useRef();
 
   const onRotationChange = useMemoizedFn((v) => {
@@ -169,28 +159,6 @@ const CropDialog = (props) => {
       )}
     </Dialog>
   );
-};
-
-CropDialog.propTypes = {
-  cropperContainerStyle: PropTypes.object,
-  imageInfo: PropTypes.shape({
-    url: PropTypes.string,
-    name: PropTypes.string,
-    type: PropTypes.string,
-    originFile: PropTypes.object,
-    size: PropTypes.number,
-    lastModified: PropTypes.any,
-    lastModifiedDate: PropTypes.any,
-  }),
-  dialogContentRootStyle: PropTypes.object,
-
-  ...imageCropSelfDefinePropTypes,
-  ...cropActionsPropTypes,
-
-  open: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired,
-  dialogProps: PropTypes.shape(dialogPropTypes),
-  ...imageCropPropTypes,
 };
 
 export default CropDialog;

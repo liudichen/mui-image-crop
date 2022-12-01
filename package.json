@@ -97,7 +97,6 @@
     "@tabler/icons": "^1.112.0",
     "ahooks": "^3.7.2",
     "classnames": "^2.3.2",
-    "prop-types": "^15.8.1",
     "react-dropzone": "^14.2.3",
     "react-easy-crop": "^4.6.2"
   }

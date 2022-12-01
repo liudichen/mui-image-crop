@@ -1,9 +1,7 @@
-import PropTypes from 'prop-types';
-import React, { useState } from 'react';
-import { useControllableValue, useMemoizedFn } from 'ahooks';
+import React from 'react';
+import { useControllableValue, useMemoizedFn, useSafeState } from 'ahooks';
 
 import { fileToBase64, generateFileDownload } from './utils';
-import { imageCropPropTypes, imageCropSelfDefinePropTypes, imageCardPropTypes, uploaderPropsTypes, imageCardDefaultProps, cropActionsDefaultProps, dialogPropTypes, cropActionsPropTypes } from './common';
 import CropDialog from './CropDialog';
 import Uploader from './Uploader';
 import ImageCard from './ImageCard';
@@ -14,7 +12,16 @@ import TitleRender from './CropDialog/TitleRender';
 import UploaderChild from './UploaderChild';
 import './style.css';
 
-const ImageCrop = (props) => {
+const imageCardDefaultProps = {
+  showDownloadIcon: false,
+  showPreviewIcon: true,
+  showRemoveIcon: true,
+  removeText: 'Delete',
+  previewText: 'Preview',
+  downloadText: 'Download',
+};
+
+export const ImageCrop = (props) => {
   const {
     accept, uploaderProps, children, disabled,
     filename, imageCardProps, error,
@@ -22,10 +29,10 @@ const ImageCrop = (props) => {
     imageCropDialogProps, cropperContainerStyle, imageCropDialogContentRootStyle, imageType, onFinish: onFinishProp, defaultAspect: defaultAspectProp,
     ...restProps
   } = props;
-  const [ imageInfo, setImageInfo ] = useState(null);
+  const [ imageInfo, setImageInfo ] = useSafeState(null);
   const [ value, setValue ] = useControllableValue(props);
-  const [ openPreview, setOpenPreview ] = useState(false);
-  const [ defaultAspect ] = useState(() => defaultAspectProp ?? (props.aspect || 4 / 3));
+  const [ openPreview, setOpenPreview ] = useSafeState(false);
+  const [ defaultAspect ] = useSafeState(() => defaultAspectProp ?? (props.aspect || 4 / 3));
 
   const onDropAccepted = useMemoizedFn(async (acceptedFiles, e) => {
     if (acceptedFiles?.length) {
@@ -66,9 +73,10 @@ const ImageCrop = (props) => {
       generateFileDownload(value.originFile);
     }
   });
-  const onFinish = useMemoizedFn((v) => {
+  const onFinish = useMemoizedFn(async (v) => {
     setValue(v);
-    onFinishProp?.(v);
+    const res = await onFinishProp?.(v);
+    return res;
   });
 
   return (
@@ -120,7 +128,7 @@ const ImageCrop = (props) => {
 
 ImageCrop.defaultProps = {
   preview: true,
-  accept: 'image/*',
+  accept: { 'image/*': [ '.jpg', '.jpeg', '.png', '.bmp' ] },
   qulity: 0.96,
   title: 'Image Crop',
   aspectMarks: [
@@ -149,35 +157,13 @@ ImageCrop.defaultProps = {
 
   imageCardProps: imageCardDefaultProps,
 
-  ...cropActionsDefaultProps,
-};
-
-ImageCrop.propTypes = {
-  value: PropTypes.any,
-  onChange: PropTypes.func,
-  disabled: PropTypes.bool,
-  error: PropTypes.bool,
-
-  preview: PropTypes.bool, // true
-  previewDialogProps: PropTypes.shape({
-    ...dialogPropTypes,
-    onClose: PropTypes.func,
-  }),
-
-  ...cropActionsPropTypes,
-
-  children: PropTypes.node,
-  imageCropDialogProps: PropTypes.shape(dialogPropTypes),
-  cropperContainerStyle: PropTypes.object,
-  imageCropDialogContentRootStyle: PropTypes.object,
-
-  accept: PropTypes.oneOfType([ PropTypes.string, PropTypes.arrayOf(PropTypes.string) ]),
-
-  imageCardProps: PropTypes.shape(imageCardPropTypes),
-  uploaderProps: PropTypes.shape(uploaderPropsTypes),
-
-  ...imageCropPropTypes,
-  ...imageCropSelfDefinePropTypes,
+  okText: ' Ok ',
+  resetText: 'Reset',
+  cancelText: 'Cancel',
+  originText: 'Origin',
+  showOk: true,
+  showReset: true,
+  showCancel: true,
 };
 
 export default ImageCrop;

@@ -20,11 +20,9 @@ export interface ValueType {
   height?: number,
 }
 
-export type className = string | Function | (string | Function | object)[] | object;
-
 export interface ImageCardProps {
   style?: object,
-  className?: className,
+  className?: string,
   showDownloadIcon?: boolean,
   showPreviewIcon?: boolean,
   showRemoveIcon?: boolean,
@@ -41,7 +39,7 @@ export interface ImageCardProps {
 
 export interface UploaderProps {
   style?: object,
-  className?: className,
+  className?: string,
   minSize?: number,
   maxSize?: number,
   useFsAccessApi?: boolean,

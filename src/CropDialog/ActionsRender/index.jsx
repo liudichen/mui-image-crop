@@ -1,21 +1,11 @@
-/*
- * @Description:
- * @Author: 柳涤尘 https://www.iimm.ink
- * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-03-31 15:29:47
- * @LastEditTime: 2022-04-16 19:50:12
- */
-import PropTypes from 'prop-types';
-import React, { useState } from 'react';
-import { useMemoizedFn } from 'ahooks';
+import React from 'react';
+import { useMemoizedFn, useSafeState } from 'ahooks';
 import { Button, DialogActions, CircularProgress } from '@mui/material';
-
-import { cropActionsPropTypes } from '../../common';
 
 const ActionsRender = (props) => {
   const { onReset, onClose, onFinish, onKeepOrigin, resetText, okText, cancelText, originText, showReset, showOk, showCancel, showOrigin } = props;
-  const [ loading, setLoading ] = useState(false);
-  const [ originLoading, setOriginLoading ] = useState(false);
+  const [ loading, setLoading ] = useSafeState(false);
+  const [ originLoading, setOriginLoading ] = useSafeState(false);
   const submit = useMemoizedFn(async () => {
     setLoading(true);
     await onFinish?.();
@@ -72,14 +62,6 @@ const ActionsRender = (props) => {
       )}
     </DialogActions>
   );
-};
-
-ActionsRender.propTypes = {
-  ...cropActionsPropTypes,
-  onReset: PropTypes.func,
-  onClose: PropTypes.func,
-  onFinish: PropTypes.func,
-  onKeepOrigin: PropTypes.func,
 };
 
 export default ActionsRender;

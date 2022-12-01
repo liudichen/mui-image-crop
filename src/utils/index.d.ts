@@ -1,10 +1,3 @@
-/*
- * @Description:
- * @Author: 柳涤尘 https://www.iimm.ink
- * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-04-16 20:48:59
- * @LastEditTime: 2022-04-16 20:59:51
- */
 import { ValueType } from '../types';
 
 declare function createImage(url: string): Promise<string | Error>;

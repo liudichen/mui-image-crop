@@ -1,13 +1,5 @@
-/*
- * @Description:
- * @Author: 柳涤尘 https://www.iimm.ink
- * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-03-31 15:38:46
- * @LastEditTime: 2022-04-15 21:04:18
- */
-import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
-import { useMemoizedFn, useCreation, useUpdate } from 'ahooks';
+import React, { useEffect } from 'react';
+import { useMemoizedFn, useCreation, useUpdate, useSafeState } from 'ahooks';
 import { Box, Slider, Stack } from '@mui/material';
 import { IconZoomIn, IconZoomOut, IconAspectRatio, IconRotate2, IconRotateClockwise2 } from '@tabler/icons';
 
@@ -33,7 +25,7 @@ const ToolbarRender = (props) => {
     const index = (aspectMarks || []).findIndex((item) => Math.abs(item.value - asp) < 0.1);
     return index === -1 ? 0 : index;
   });
-  const [ value, setValue ] = useState(() => calculateAspectSliderValue(aspect));
+  const [ value, setValue ] = useSafeState(() => calculateAspectSliderValue(aspect));
   const onChange = useMemoizedFn((e, v) => {
     setValue(v);
     const aspect = marks[v]?.aspect ?? defaultAspect;
@@ -200,27 +192,6 @@ const ToolbarRender = (props) => {
       )}
     </Box>
   );
-};
-
-ToolbarRender.propTypes = {
-  defaultAspect: PropTypes.number,
-  showZoomToolbar: PropTypes.bool,
-  zoom: PropTypes.number,
-  minZoom: PropTypes.number,
-  maxZoom: PropTypes.number,
-  zoomStep: PropTypes.number,
-  onZoomChange: PropTypes.func,
-  showRotateToolbar: PropTypes.bool,
-  rotation: PropTypes.number,
-  rotateStep: PropTypes.number,
-  onRotationChange: PropTypes.func,
-  showAspectToolbar: PropTypes.bool,
-  aspect: PropTypes.number,
-  onAspectChange: PropTypes.func,
-  onClose: PropTypes.func,
-  onReset: PropTypes.func,
-  onFinish: PropTypes.func,
-  width: PropTypes.number,
 };
 
 export default ToolbarRender;

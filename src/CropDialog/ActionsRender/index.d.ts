@@ -1,10 +1,3 @@
-/*
- * @Description:
- * @Author: 柳涤尘 https://www.iimm.ink
- * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-04-15 21:07:40
- * @LastEditTime: 2022-04-16 19:22:18
- */
 import React from 'react';
 
 export interface ActionsRenderProps {
@@ -22,6 +15,6 @@ export interface ActionsRenderProps {
   showOrigin?: boolean,
 }
 
-declare const ActionsRender: React.FunctionComponent<ActionsRenderProps>;
+declare const ActionsRender: React.FC<ActionsRenderProps>;
 
 export default ActionsRender;

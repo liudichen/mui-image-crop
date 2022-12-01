@@ -1,10 +1,3 @@
-/*
- * @Description:
- * @Author: 柳涤尘 https://www.iimm.ink
- * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-04-15 21:17:25
- * @LastEditTime: 2022-04-16 20:25:26
- */
 import React from 'react';
 import { CropperProps } from 'react-easy-crop';
 import { DialogProps } from '@mui/material';
