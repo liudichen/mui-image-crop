@@ -1,16 +1,6 @@
-/*
- * @Description:
- * @Author: 柳涤尘 https://www.iimm.ink
- * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-03-30 13:38:33
- * @LastEditTime: 2022-04-15 21:46:44
- */
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useDropzone } from 'react-dropzone';
 import classNames from 'classnames';
-
-import { uploaderPropsTypes } from '../common';
 
 const prefixCls = 'imageCrop';
 
@@ -40,15 +30,7 @@ const Uploader = (props) => {
 };
 
 Uploader.defaultProps = {
-  accept: 'image/*',
-};
-
-Uploader.propTypes = {
-  accept: PropTypes.oneOfType([ PropTypes.string, PropTypes.arrayOf(PropTypes.string) ]),
-  disabled: PropTypes.bool,
-  onDropAccepted: PropTypes.func, // Cb for when the `drop` event occurs.   * Note that if no files are accepted, this callback is not invoked. @param {File[]} files  @param {(DragEvent|Event)} event
-
-  ...uploaderPropsTypes,
+  accept: { 'image/*': [ '.jpg', '.jpeg', '.png', '.bmp' ] },
 };
 
 export default Uploader;

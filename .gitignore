@@ -33,4 +33,4 @@ dist-ssr
 /lib
 /docs-dist
 
-/package-lock.json
+package-lock.json

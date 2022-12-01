@@ -1,6 +1,7 @@
 # mui-image-crop
 
-[![NPM version](https://img.shields.io/npm/v/mui-image-crop.svg?style=flat)](https://npmjs.org/package/mui-image-crop) [![NPM downloads](http://img.shields.io/npm/dm/mui-image-crop.svg?style=flat)](https://npmjs.org/package/mui-image-crop)
+[![NPM version](https://img.shields.io/npm/v/mui-image-crop.svg?style=flat)](https://npmjs.org/package/mui-image-crop) 
+[![NPM downloads](http://img.shields.io/npm/dm/mui-image-crop.svg?style=flat)](https://npmjs.org/package/mui-image-crop)
 
 使用 MUI(@mui/material)时类似 antd Upload 组件 picture-card 预览样式的 image Crop。默认具有缩放、旋转、宽高比工具栏，支持自定义
 
