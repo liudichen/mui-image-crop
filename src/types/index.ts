@@ -1,12 +1,5 @@
-/* eslint-disable @typescript-eslint/ban-types */
-/*
- * @Description:
- * @Author: 柳涤尘 https://www.iimm.ink
- * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-04-15 21:12:59
- * @LastEditTime: 2022-04-16 19:42:26
- */
 import React from 'react';
+import { DropzoneOptions } from 'react-dropzone';
 
 export interface ValueType {
   size?: number,
@@ -21,7 +14,7 @@ export interface ValueType {
 }
 
 export interface ImageCardProps {
-  style?: object,
+  style?: React.CSSProperties,
   className?: string,
   showDownloadIcon?: boolean,
   showPreviewIcon?: boolean,
@@ -37,15 +30,16 @@ export interface ImageCardProps {
   removeText?: string,
 }
 
-export interface UploaderProps {
-  style?: object,
+export interface UploaderProps extends DropzoneOptions {
+  style?: React.CSSProperties,
   className?: string,
   minSize?: number,
   maxSize?: number,
+  /** 使用 File System Access API？ */
   useFsAccessApi?: boolean,
 }
 
 export interface mark {
   value: number,
-  label: number | string | React.ReactNode,
+  label: React.ReactNode,
 }

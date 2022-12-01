@@ -77,7 +77,8 @@ ImageCrop.propTypes = {
   cropperContainerStyle: PropTypes.object,
   imageCropDialogContentRootStyle: PropTypes.object,
 
-  accept: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
+/*0.x样式为.xx或[.xx], 1.x为{image/*:[.xxx]} */
+  accept: PropTypes.any),
 
   imageCardProps: PropTypes.shape(imageCardPropTypes),
   uploaderProps: PropTypes.shape(uploaderPropsTypes),
@@ -165,9 +166,6 @@ const imageCropSelfDefinePropTypes = {
   okText: PropTypes.node, // 确认按钮内容 OK
   resetText: PropTypes.node, // 重置按钮内容 Reset
   cancelText: PropTypes.node, // 取消按钮内容 Cancel
-  zoomLabel: PropTypes.node,
-  rotateLabel: PropTypes.node,
-  aspectLabel: PropTypes.node,
   allowTouchRotate: PropTypes.bool, // 是否允许触摸旋转 false
   defaultAspect: PropTypes.number, // 默认的宽高比
   onAspectChange: PropTypes.func, // 宽高比变化触发 api: (aspect) => void
