@@ -2,9 +2,15 @@ import React from 'react';
 import classNames from 'classnames';
 import { IconEye, IconTrash, IconDownload } from '@tabler/icons';
 
-const prefixCls = 'imageCrop';
+import { ImageCardProps as ImageCardCommonProps } from '../types';
+import { prefixCls } from '../utils';
 
-const ImageCard = (props) => {
+export interface ImageCardProps extends ImageCardCommonProps {
+  src?: string,
+  filename?: string,
+}
+
+export const ImageCard = (props: ImageCardProps) => {
   const {
     src,
     className: classNameProp,
@@ -29,6 +35,7 @@ const ImageCard = (props) => {
     <span
       role='img'
       className={`${prefixCls}Icon-icon`}
+      // @ts-ignore
       onClick={onDownload}
       title={downloadText}
     >
@@ -39,6 +46,7 @@ const ImageCard = (props) => {
     <span
       role='img'
       className={`${prefixCls}Icon-icon`}
+      // @ts-ignore
       onClick={onRemove}
       title={removeText}
     >
@@ -82,5 +90,3 @@ const ImageCard = (props) => {
     </div>
   );
 };
-
-export default ImageCard;

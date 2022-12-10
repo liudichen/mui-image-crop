@@ -1,11 +1,44 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { useMemoizedFn, useSafeState } from 'ahooks';
 import { Box, Dialog, DialogContent, DialogTitle } from '@mui/material';
-import Cropper from 'react-easy-crop';
+import { DialogProps } from '@mui/material';
+import Cropper, { CropperProps } from 'react-easy-crop';
 
 import { getCroppedImage, getOriginImage } from '../utils';
+import { ICroppedImage, IMarkItem } from '../types';
+import { ActionsRenderProps } from './ActionsRender';
+import { ToolbarRenderProps } from './ToolbarRender';
+import { TitleRenderProps } from './TitleRender';
 
-const CropDialog = (props) => {
+export interface CropDialogProps extends Omit<CropperProps, 'image'>, Omit<ActionsRenderProps, 'onFinish'> {
+  imageInfo: ICroppedImage,
+  qulity?: number,
+  imageType?: string,
+  showAspectToolbar?: boolean,
+  onAspectChange?: (aspect: number) => void,
+  defaultAspect?: number,
+  aspectMarks: IMarkItem[],
+  showZoomToolbar?: boolean,
+  zoomStep: number,
+  showRotateToolbar?: boolean,
+  rotateStep: number,
+  zoomLabel?: React.ReactNode,
+  rotateLabel?: React.ReactNode,
+  aspectLabel?: React.ReactNode,
+  allowTouchRotate?: boolean,
+  title?: React.ReactNode,
+  TitleRender?: React.ComponentType<TitleRenderProps>,
+  ActionsRender?: React.ComponentType<ActionsRenderProps>,
+  ToolbarRender?: React.ComponentType<ToolbarRenderProps>,
+  dialogProps?: DialogProps,
+  cropperContainerStyle?: React.CSSProperties,
+  dialogContentRootStyle?: React.CSSProperties,
+  open: boolean,
+  onClose: () => void,
+  onFinish: (value: ICroppedImage) => void | boolean | Promise<void | boolean>,
+}
+
+export const CropDialog = (props: CropDialogProps) => {
   const {
     crop: cropProp, onCropChange: onCropChangeProp, onCropComplete: onCropCompleteProp,
     imageInfo, qulity, imageType,
@@ -15,6 +48,7 @@ const CropDialog = (props) => {
     open, onClose: onCloseProp, onFinish: onFinishProp, okText, cancelText, resetText, originText, showOk, showCancel, showReset, showOrigin,
     TitleRender, title, ActionsRender, ToolbarRender,
     dialogProps, cropperContainerStyle, dialogContentRootStyle,
+    actionsProps,
     ...restProps
   } = props;
   const [ crop, setCrop ] = useSafeState(cropProp ?? { x: 0, y: 0 });
@@ -22,7 +56,7 @@ const CropDialog = (props) => {
   const [ zoom, setZoom ] = useSafeState(zoomProp ?? 1);
   const [ rotation, setRotation ] = useSafeState(rotationProp ?? 0);
   const [ aspect, setAspect ] = useSafeState(aspectProp ?? defaultAspect);
-  const ref = useRef();
+  const ref = React.useRef();
 
   const onRotationChange = useMemoizedFn((v) => {
     // avoid rotating by touching in a mobile browser
@@ -60,17 +94,18 @@ const CropDialog = (props) => {
     onCloseProp?.();
   });
   const onFinish = useMemoizedFn(async () => {
+    // @ts-ignore
     const res = await getCroppedImage(imageInfo.url, croppedAreaPixels, rotation, imageType ?? (imageInfo?.type || 'image/png'), imageInfo?.name || 'image.png', qulity);
 
-    const flag = await onFinishProp?.(res);
+    const flag = await onFinishProp?.(res as ICroppedImage);
     if (flag !== false) {
       onClose();
     }
   });
 
   const onKeepOrigin = useMemoizedFn(async () => {
-    const res = await getOriginImage(imageInfo);
-    const flag = await onFinishProp?.(res);
+    const res = await getOriginImage(imageInfo as ICroppedImage);
+    const flag = await onFinishProp?.(res as ICroppedImage);
     if (flag !== false) {
       onClose();
     }
@@ -136,6 +171,7 @@ const CropDialog = (props) => {
             onClose={onClose}
             onFinish={onFinish}
             onReset={onReset}
+            // @ts-ignore
             width={ref.current?.offsetWidth}
             defaultAspect={defaultAspect}
           />
@@ -143,6 +179,7 @@ const CropDialog = (props) => {
       </DialogContent>
       { !!ActionsRender && (
         <ActionsRender
+          actionsProps={actionsProps}
           onReset={onReset}
           onClose={onClose}
           onFinish={onFinish}
@@ -160,5 +197,3 @@ const CropDialog = (props) => {
     </Dialog>
   );
 };
-
-export default CropDialog;

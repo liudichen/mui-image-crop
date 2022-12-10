@@ -1,7 +1,12 @@
 import React from 'react';
 import { Typography } from '@mui/material';
 
-const TitleRender = (props) => {
+export interface TitleRenderProps {
+  title?: React.ReactNode,
+  onClose?: () => void | Promise<void>,
+}
+
+export const TitleRender = (props : TitleRenderProps) => {
   const { title } = props;
   return (
     <Typography
@@ -12,5 +17,3 @@ const TitleRender = (props) => {
     </Typography>
   );
 };
-
-export default TitleRender;

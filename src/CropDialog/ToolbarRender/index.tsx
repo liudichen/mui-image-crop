@@ -1,14 +1,41 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useMemoizedFn, useCreation, useUpdate, useSafeState } from 'ahooks';
 import { Box, Slider, Stack } from '@mui/material';
+import { SliderProps } from '@mui/material';
 import { IconZoomIn, IconZoomOut, IconAspectRatio, IconRotate2, IconRotateClockwise2 } from '@tabler/icons';
 
-const ToolbarRender = (props) => {
+import { ICroppedImage, IMarkItem } from '../../types';
+
+type NumberChangeFn = (newValue: number) => void;
+
+export interface ToolbarRenderProps {
+  zoom: number,
+  onZoomChange: NumberChangeFn,
+  minZoom: number,
+  maxZoom: number,
+  zoomStep: number,
+  showZoomToolbar?: boolean,
+  rotation: number,
+  onRotationChange: NumberChangeFn,
+  rotateStep: number,
+  showRotateToolbar?: boolean,
+  defaultAspect?: number,
+  aspect: number,
+  onAspectChange: NumberChangeFn,
+  showAspectToolbar?: boolean,
+  aspectMarks: IMarkItem[],
+  onReset?: () => void,
+  onClose?: () => void,
+  width?: number | string,
+  onFinish: (value: ICroppedImage) => void | Promise<void>;
+}
+
+export const ToolbarRender = (props: ToolbarRenderProps) => {
   const {
     zoom, onZoomChange, minZoom, maxZoom, zoomStep, showZoomToolbar,
     rotation, onRotationChange, rotateStep, showRotateToolbar, defaultAspect,
     aspect, onAspectChange, showAspectToolbar, aspectMarks,
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     onReset, onClose, onFinish, width,
   } = props;
   const update = useUpdate();
@@ -17,7 +44,7 @@ const ToolbarRender = (props) => {
   }, [ aspectMarks ]);
 
   const aspectProps = useCreation(() => {
-    const result = { min: 0, max: marks.length - 1, marks };
+    const result: Partial<SliderProps> = { min: 0, max: marks.length - 1, marks };
     result.valueLabelFormat = (v) => marks[v].label;
     return result;
   }, [ marks ]);
@@ -54,14 +81,14 @@ const ToolbarRender = (props) => {
     onRotationChange(newRotation);
   });
 
-  useEffect(() => {
+  React.useEffect(() => {
     const newValue = calculateAspectSliderValue(aspect);
     if (newValue !== value) {
       setValue(newValue);
     }
   }, [ aspect ]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     update();
   }, [ width ]);
   return (
@@ -101,6 +128,7 @@ const ToolbarRender = (props) => {
               { value: minZoom, label: `${Math.round(minZoom * 100)}%` },
               { value: maxZoom, label: `${Math.round(maxZoom * 100)}%` },
             ]}
+            // @ts-ignore
             onChange={(e, v) => onZoomChange(v)}
             valueLabelDisplay='auto'
             valueLabelFormat={(v) => `${Math.round(v * 100)}%`}
@@ -142,6 +170,7 @@ const ToolbarRender = (props) => {
             max={360}
             step={rotateStep}
             value={rotation}
+            // @ts-ignore
             onChange={(e, v) => onRotationChange(v)}
             marks={[
               { value: 0, label: '0°' },
@@ -193,5 +222,3 @@ const ToolbarRender = (props) => {
     </Box>
   );
 };
-
-export default ToolbarRender;

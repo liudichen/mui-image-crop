@@ -1,10 +1,17 @@
 import React from 'react';
-import { useDropzone } from 'react-dropzone';
+import { DropEvent, useDropzone } from 'react-dropzone';
 import classNames from 'classnames';
 
-const prefixCls = 'imageCrop';
+import { prefixCls } from '../utils';
+import { UploaderProps as UploaderCommonProps } from '../types';
 
-const Uploader = (props) => {
+export interface UploaderProps extends UploaderCommonProps {
+  accept?: {[key: string]: string[]},
+  disabled?: boolean,
+  onDropAccepted?: (files: File[], e: DropEvent) => void,
+}
+
+export const Uploader = (props: React.PropsWithChildren<UploaderProps>) => {
   const {
     children,
     className: classNameProp,
@@ -28,5 +35,3 @@ const Uploader = (props) => {
     </div>
   );
 };
-
-export default Uploader;

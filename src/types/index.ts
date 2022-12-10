@@ -1,17 +1,22 @@
 import React from 'react';
 import { DropzoneOptions } from 'react-dropzone';
 
-export interface ValueType {
-  size?: number,
-  url?: string,
+export type ICroppedImage = {
   name?: string,
+  size?: number,
+  url: string,
   type?: string,
   originFile?: File,
   lastModified?: any,
   lastModifiedDate?: any,
   width?: number,
   height?: number,
-}
+} | (File & {
+  originFile?: File,
+  url: string,
+  width: number,
+  height: number,
+});
 
 export interface ImageCardProps {
   style?: React.CSSProperties,
@@ -22,9 +27,9 @@ export interface ImageCardProps {
   customDownloadIcon?: React.ReactNode,
   customPreviewIcon?: React.ReactNode,
   customRemoveIcon?: React.ReactNode,
-  onDownload?: () => void,
+  onDownload?: (value?: ICroppedImage) => void,
   onPreview?: () => void,
-  onRemove?: () => void,
+  onRemove?: (value?: ICroppedImage) => void,
   downloadText?: string,
   previewText?: string,
   removeText?: string,
@@ -39,7 +44,7 @@ export interface UploaderProps extends DropzoneOptions {
   useFsAccessApi?: boolean,
 }
 
-export interface mark {
+export interface IMarkItem {
   value: number,
   label: React.ReactNode,
 }
