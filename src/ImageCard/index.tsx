@@ -90,3 +90,5 @@ export const ImageCard = (props: ImageCardProps) => {
     </div>
   );
 };
+
+ImageCard.displayName = 'iimm.Mui.ImageCrop.ImageCard';

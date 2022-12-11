@@ -347,4 +347,6 @@ ImageCrop.defaultProps = {
   showCancel: true,
 };
 
+ImageCrop.displayName = 'iimm.Mui.ImageCrop';
+
 export default ImageCrop;

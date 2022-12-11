@@ -17,3 +17,5 @@ export const TitleRender = (props : TitleRenderProps) => {
     </Typography>
   );
 };
+
+TitleRender.displayName = 'iimm.Mui.ImageCrop.CropDialog.DefaultTitleRender';

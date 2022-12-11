@@ -11,3 +11,4 @@ export const UploaderChild = () => {
   );
 };
 
+UploaderChild.displayName = 'iimm.Mui.ImageCrop.DefaultUploaderChildren';

@@ -197,3 +197,5 @@ export const CropDialog = (props: CropDialogProps) => {
     </Dialog>
   );
 };
+
+CropDialog.displayName = 'iimm.Mui.ImageCrop.CropDialog';

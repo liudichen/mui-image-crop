@@ -51,3 +51,5 @@ export const PreviewDialog = (props: PreviewDialogProps) => {
     </Dialog>
   );
 };
+
+PreviewDialog.displayName = 'iimm.Mui.ImageCrop.PreviewDialog';

@@ -84,3 +84,5 @@ export const ActionsRender = (props: ActionsRenderProps) => {
     </DialogActions>
   );
 };
+
+ActionsRender.displayName = 'iimm.Mui.ImageCrop.CropDialog.DefaultActionsRender';

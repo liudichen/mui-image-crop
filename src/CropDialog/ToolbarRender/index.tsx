@@ -222,3 +222,5 @@ export const ToolbarRender = (props: ToolbarRenderProps) => {
     </Box>
   );
 };
+
+ToolbarRender.displayName = 'iimm.Mui.ImageCrop.CropDialog.DefaultToolbarRender';

@@ -35,3 +35,5 @@ export const Uploader = (props: React.PropsWithChildren<UploaderProps>) => {
     </div>
   );
 };
+
+Uploader.displayName = 'iimm.Mui.ImageCrop.Uploader';
