@@ -33,7 +33,7 @@ const imageCardDefaultCNProps = {
   downloadText: '下载',
 } as ImageCardProps;
 
-export interface ImageCropProps extends CropperProps {
+export interface ImageCropProps extends Partial<CropperProps> {
   /**
    * @description controlled property, cropped imageInfo object, and its type is { name: string, type: string, size: number, originFile: File, width: number, height :number, url: string }
    * @description.zh-CN value 受控属性，为剪裁后的图片信息的对象， 类型为 { name: string, type: string, size: number, originFile: File, width: number, height :number, url: string }
