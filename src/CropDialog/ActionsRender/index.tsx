@@ -1,6 +1,7 @@
 import React from 'react';
 import { useMemoizedFn, useSafeState } from 'ahooks';
-import { Button, DialogActions, CircularProgress, DialogActionsProps } from '@mui/material';
+import { Button, DialogActions, CircularProgress } from '@mui/material';
+import type { DialogActionsProps } from '@mui/material';
 
 export interface ActionsRenderProps {
   onReset?: () => void | Promise<void>,

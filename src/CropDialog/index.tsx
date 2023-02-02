@@ -1,14 +1,15 @@
 import React from 'react';
 import { useMemoizedFn, useSafeState } from 'ahooks';
 import { Box, Dialog, DialogContent, DialogTitle } from '@mui/material';
-import { DialogProps } from '@mui/material';
-import Cropper, { CropperProps } from 'react-easy-crop';
+import type { DialogProps } from '@mui/material';
+import Cropper from 'react-easy-crop';
+import type { CropperProps } from 'react-easy-crop';
 
 import { getCroppedImage, getOriginImage } from '../utils';
-import { ICroppedImage, IMarkItem } from '../types';
-import { ActionsRenderProps } from './ActionsRender';
-import { ToolbarRenderProps } from './ToolbarRender';
-import { TitleRenderProps } from './TitleRender';
+import type { ICroppedImage, IMarkItem } from '../types';
+import type { ActionsRenderProps } from './ActionsRender';
+import type { ToolbarRenderProps } from './ToolbarRender';
+import type { TitleRenderProps } from './TitleRender';
 
 export interface CropDialogProps extends Omit<CropperProps, 'image'>, Omit<ActionsRenderProps, 'onFinish'> {
   imageInfo: ICroppedImage,

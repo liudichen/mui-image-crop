@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconPlus } from '@tabler/icons';
+import { IconPlus } from '@tabler/icons-react';
 
 export const UploaderChild = () => {
   return (

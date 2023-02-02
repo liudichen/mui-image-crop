@@ -1,4 +1,4 @@
-import { ICroppedImage } from '../types';
+import type { ICroppedImage } from '../types';
 
 export const prefixCls = 'imageCrop';
 

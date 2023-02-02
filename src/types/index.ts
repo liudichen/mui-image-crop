@@ -1,5 +1,5 @@
 import React from 'react';
-import { DropzoneOptions } from 'react-dropzone';
+import type { DropzoneOptions } from 'react-dropzone';
 
 export type ICroppedImage = {
   name?: string,

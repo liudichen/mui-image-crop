@@ -1,8 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
-import { IconEye, IconTrash, IconDownload } from '@tabler/icons';
+import { IconEye, IconTrash, IconDownload } from '@tabler/icons-react';
 
-import { ImageCardProps as ImageCardCommonProps } from '../types';
+import type { ImageCardProps as ImageCardCommonProps } from '../types';
 import { prefixCls } from '../utils';
 
 export interface ImageCardProps extends ImageCardCommonProps {

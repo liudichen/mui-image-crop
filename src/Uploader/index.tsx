@@ -1,9 +1,10 @@
 import React from 'react';
-import { DropEvent, useDropzone } from 'react-dropzone';
+import { useDropzone } from 'react-dropzone';
+import type { DropEvent } from 'react-dropzone';
 import classNames from 'classnames';
 
 import { prefixCls } from '../utils';
-import { UploaderProps as UploaderCommonProps } from '../types';
+import type { UploaderProps as UploaderCommonProps } from '../types';
 
 export interface UploaderProps extends UploaderCommonProps {
   accept?: {[key: string]: string[]},

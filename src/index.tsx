@@ -1,19 +1,21 @@
 import React from 'react';
 import { useControllableValue, useMemoizedFn, useSafeState } from 'ahooks';
-import { DialogActionsProps, DialogProps } from '@mui/material';
-import { CropperProps } from 'react-easy-crop';
+import type { DialogActionsProps, DialogProps } from '@mui/material';
+import type { CropperProps } from 'react-easy-crop';
 
 import { fileToBase64, generateFileDownload } from './utils';
 import { CropDialog } from './CropDialog';
-import { Uploader, UploaderProps } from './Uploader';
-import { ImageCard, ImageCardProps } from './ImageCard';
+import { Uploader } from './Uploader';
+import type { UploaderProps } from './Uploader';
+import { ImageCard } from './ImageCard';
+import type { ImageCardProps } from './ImageCard';
 import { PreviewDialog } from './PreviewDialog';
 import { ToolbarRender } from './CropDialog/ToolbarRender';
 import { ActionsRender } from './CropDialog/ActionsRender';
 import { TitleRender } from './CropDialog/TitleRender';
 import { UploaderChild } from './UploaderChild';
+import type { ICroppedImage, IMarkItem } from './types';
 import './style.css';
-import { ICroppedImage, IMarkItem } from './types';
 
 const imageCardDefaultENProps = {
   showDownloadIcon: false,

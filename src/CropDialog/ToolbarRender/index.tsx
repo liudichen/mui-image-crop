@@ -2,7 +2,7 @@ import React from 'react';
 import { useMemoizedFn, useCreation, useUpdate, useSafeState } from 'ahooks';
 import { Box, Slider, Stack } from '@mui/material';
 import { SliderProps } from '@mui/material';
-import { IconZoomIn, IconZoomOut, IconAspectRatio, IconRotate2, IconRotateClockwise2 } from '@tabler/icons';
+import { IconZoomIn, IconZoomOut, IconAspectRatio, IconRotate2, IconRotateClockwise2 } from '@tabler/icons-react';
 
 import { ICroppedImage, IMarkItem } from '../../types';
 

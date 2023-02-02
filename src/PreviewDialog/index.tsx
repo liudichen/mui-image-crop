@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
-import { DialogProps } from '@mui/material';
-import { IconLogout } from '@tabler/icons';
+import type { DialogProps } from '@mui/material';
+import { IconLogout } from '@tabler/icons-react';
 
 export interface PreviewDialogProps extends Omit<DialogProps, 'onClose'> {
   src?: string,
