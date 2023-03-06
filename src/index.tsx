@@ -187,7 +187,9 @@ export interface ImageCropProps extends Partial<CropperProps> {
    */
   rotateStep?: number,
   /** 点击Ok按钮的callback，传入当前图片内容,如果返回值不是false则会自动关闭窗口*/
-  onFinish?: (value: ICroppedImage) => any | Promise<any>,
+  onFinish?: ((value?: ICroppedImage) => any) | ((value?: ICroppedImage) =>Promise<any>),
+  /** 点击取消按钮的callback，如果返回值不是false则自动关闭 */
+  onCancel?: () => any | (() => Promise<any>),
   actionsProps?: DialogActionsProps,
 }
 

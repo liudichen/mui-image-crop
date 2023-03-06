@@ -21,11 +21,12 @@ export interface ActionsRenderProps {
   /** 显示Origin-使用原图按钮? */
   showOrigin?: boolean,
   /** 传递给底部按钮区域DialogActions组件的props */
-  actionsProps?: DialogActionsProps
+  actionsProps?: DialogActionsProps,
+  onCancel?: () => any | (() => Promise<any>),
 }
 
 export const ActionsRender = (props: ActionsRenderProps) => {
-  const { onReset, onClose, onFinish, onKeepOrigin, resetText, okText, cancelText, originText, showReset, showOk, showCancel, showOrigin, actionsProps } = props;
+  const { onReset, onClose, onFinish, onKeepOrigin, resetText, okText, cancelText, originText, showReset, showOk, showCancel, showOrigin, actionsProps, onCancel: onCancelProp } = props;
   const [ loading, setLoading ] = useSafeState(false);
   const [ originLoading, setOriginLoading ] = useSafeState(false);
   const submit = useMemoizedFn(async () => {
@@ -38,12 +39,18 @@ export const ActionsRender = (props: ActionsRenderProps) => {
     await onKeepOrigin?.();
     setOriginLoading(false);
   });
+  const onCancel = useMemoizedFn(async () => {
+    const res = await onCancelProp?.();
+    if (res !== false) {
+      onClose?.();
+    }
+  });
   return (
     <DialogActions {...(actionsProps || {})}>
       {showCancel && (
         <Button
           variant='outlined'
-          onClick={onClose}
+          onClick={onCancel}
           sx={{ ml: 2 }}
         >
           {cancelText}

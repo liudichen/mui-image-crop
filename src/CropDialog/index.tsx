@@ -37,6 +37,7 @@ export interface CropDialogProps extends Omit<CropperProps, 'image'>, Omit<Actio
   open: boolean,
   onClose: () => void,
   onFinish: (value: ICroppedImage) => void | boolean | Promise<void | boolean>,
+  onCancel?: () => any | (() => Promise<any>),
 }
 
 export const CropDialog = (props: CropDialogProps) => {
@@ -49,7 +50,7 @@ export const CropDialog = (props: CropDialogProps) => {
     open, onClose: onCloseProp, onFinish: onFinishProp, okText, cancelText, resetText, originText, showOk, showCancel, showReset, showOrigin,
     TitleRender, title, ActionsRender, ToolbarRender,
     dialogProps, cropperContainerStyle, dialogContentRootStyle,
-    actionsProps,
+    actionsProps, onCancel,
     ...restProps
   } = props;
   const [ crop, setCrop ] = useSafeState(cropProp ?? { x: 0, y: 0 });
@@ -193,6 +194,7 @@ export const CropDialog = (props: CropDialogProps) => {
           showReset={showReset}
           showOrigin={showOrigin}
           onKeepOrigin={onKeepOrigin}
+          onCancel={onCancel}
         />
       )}
     </Dialog>
