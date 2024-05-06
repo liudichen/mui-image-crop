@@ -2,20 +2,15 @@ import React from 'react';
 import { Typography } from '@mui/material';
 
 export interface TitleRenderProps {
-  title?: React.ReactNode,
-  onClose?: () => void | Promise<void>,
+  title?: React.ReactNode;
+  onClose?: () => void | Promise<void>;
 }
 
-export const TitleRender = (props : TitleRenderProps) => {
+export const TitleRender = (props: TitleRenderProps) => {
   const { title } = props;
   return (
-    <Typography
-      component='div'
-      variant='h4'
-    >
+    <Typography component="div" variant="h4">
       {title}
     </Typography>
   );
 };
-
-TitleRender.displayName = 'iimm.Mui.ImageCrop.CropDialog.DefaultTitleRender';

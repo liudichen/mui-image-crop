@@ -11,53 +11,90 @@ import type { ActionsRenderProps } from './ActionsRender';
 import type { ToolbarRenderProps } from './ToolbarRender';
 import type { TitleRenderProps } from './TitleRender';
 
-export interface CropDialogProps extends Omit<CropperProps, 'image'>, Omit<ActionsRenderProps, 'onFinish'> {
-  imageInfo: ICroppedImage,
-  qulity?: number,
-  imageType?: string,
-  showAspectToolbar?: boolean,
-  onAspectChange?: (aspect: number) => void,
-  defaultAspect?: number,
-  aspectMarks: IMarkItem[],
-  showZoomToolbar?: boolean,
-  zoomStep: number,
-  showRotateToolbar?: boolean,
-  rotateStep: number,
-  zoomLabel?: React.ReactNode,
-  rotateLabel?: React.ReactNode,
-  aspectLabel?: React.ReactNode,
-  allowTouchRotate?: boolean,
-  title?: React.ReactNode,
-  TitleRender?: React.ComponentType<TitleRenderProps>,
-  ActionsRender?: React.ComponentType<ActionsRenderProps>,
-  ToolbarRender?: React.ComponentType<ToolbarRenderProps>,
-  dialogProps?: DialogProps,
-  cropperContainerStyle?: React.CSSProperties,
-  dialogContentRootStyle?: React.CSSProperties,
-  open: boolean,
-  onClose: () => void,
-  onFinish: (value: ICroppedImage) => void | boolean | Promise<void | boolean>,
-  onCancel?: () => any | (() => Promise<any>),
+export interface CropDialogProps
+  extends Omit<CropperProps, 'image'>,
+    Omit<ActionsRenderProps, 'onFinish'> {
+  imageInfo: ICroppedImage;
+  qulity?: number;
+  imageType?: string;
+  showAspectToolbar?: boolean;
+  onAspectChange?: (aspect: number) => void;
+  defaultAspect?: number;
+  aspectMarks: IMarkItem[];
+  showZoomToolbar?: boolean;
+  zoomStep: number;
+  showRotateToolbar?: boolean;
+  rotateStep: number;
+  zoomLabel?: React.ReactNode;
+  rotateLabel?: React.ReactNode;
+  aspectLabel?: React.ReactNode;
+  allowTouchRotate?: boolean;
+  title?: React.ReactNode;
+  TitleRender?: React.ComponentType<TitleRenderProps>;
+  ActionsRender?: React.ComponentType<ActionsRenderProps>;
+  ToolbarRender?: React.ComponentType<ToolbarRenderProps>;
+  dialogProps?: DialogProps;
+  cropperContainerStyle?: React.CSSProperties;
+  dialogContentRootStyle?: React.CSSProperties;
+  open: boolean;
+  onClose: () => void;
+  onFinish: (value: ICroppedImage) => void | boolean | Promise<void | boolean>;
+  onCancel?: () => any | (() => Promise<any>);
 }
 
 export const CropDialog = (props: CropDialogProps) => {
   const {
-    crop: cropProp, onCropChange: onCropChangeProp, onCropComplete: onCropCompleteProp,
-    imageInfo, qulity, imageType,
-    showAspectToolbar, aspect: aspectProp, onAspectChange: onAspectChangeProp, aspectMarks, defaultAspect,
-    showZoomToolbar, zoom: zoomProp, minZoom, maxZoom, zoomStep, onZoomChange: onZoomChangeProp,
-    showRotateToolbar, rotation: rotationProp, onRotationChange: onRotationChangeProp, allowTouchRotate, rotateStep,
-    open, onClose: onCloseProp, onFinish: onFinishProp, okText, cancelText, resetText, originText, showOk, showCancel, showReset, showOrigin,
-    TitleRender, title, ActionsRender, ToolbarRender,
-    dialogProps, cropperContainerStyle, dialogContentRootStyle,
-    actionsProps, onCancel,
+    crop: cropProp,
+    onCropChange: onCropChangeProp,
+    onCropComplete: onCropCompleteProp,
+    imageInfo,
+    qulity,
+    imageType,
+    showAspectToolbar,
+    aspect: aspectProp,
+    onAspectChange: onAspectChangeProp,
+    aspectMarks,
+    defaultAspect,
+    showZoomToolbar,
+    zoom: zoomProp,
+    minZoom,
+    maxZoom,
+    zoomStep,
+    onZoomChange: onZoomChangeProp,
+    showRotateToolbar,
+    rotation: rotationProp,
+    onRotationChange: onRotationChangeProp,
+    allowTouchRotate,
+    rotateStep,
+    open,
+    onClose: onCloseProp,
+    onFinish: onFinishProp,
+    okText,
+    cancelText,
+    resetText,
+    originText,
+    showOk,
+    showCancel,
+    showReset,
+    showOrigin,
+    TitleRender,
+    title,
+    ActionsRender,
+    ToolbarRender,
+    dialogProps,
+    cropperContainerStyle,
+    dialogContentRootStyle,
+    actionsProps,
+    onCancel,
     ...restProps
   } = props;
-  const [ crop, setCrop ] = useSafeState(cropProp ?? { x: 0, y: 0 });
-  const [ croppedAreaPixels, setCroppedAreaPixels ] = useSafeState(props?.initialCroppedAreaPixels ?? null);
-  const [ zoom, setZoom ] = useSafeState(zoomProp ?? 1);
-  const [ rotation, setRotation ] = useSafeState(rotationProp ?? 0);
-  const [ aspect, setAspect ] = useSafeState(aspectProp ?? defaultAspect);
+  const [crop, setCrop] = useSafeState(cropProp ?? { x: 0, y: 0 });
+  const [croppedAreaPixels, setCroppedAreaPixels] = useSafeState(
+    props?.initialCroppedAreaPixels ?? null,
+  );
+  const [zoom, setZoom] = useSafeState(zoomProp ?? 1);
+  const [rotation, setRotation] = useSafeState(rotationProp ?? 0);
+  const [aspect, setAspect] = useSafeState(aspectProp ?? defaultAspect);
   const ref = React.useRef();
 
   const onRotationChange = useMemoizedFn((v) => {
@@ -97,7 +134,14 @@ export const CropDialog = (props: CropDialogProps) => {
   });
   const onFinish = useMemoizedFn(async () => {
     // @ts-ignore
-    const res = await getCroppedImage(imageInfo.url, croppedAreaPixels, rotation, imageType ?? (imageInfo?.type || 'image/png'), imageInfo?.name || 'image.png', qulity);
+    const res = await getCroppedImage(
+      imageInfo.url,
+      croppedAreaPixels as any,
+      rotation,
+      imageType ?? (imageInfo?.type || 'image/png'),
+      imageInfo?.name || 'image.png',
+      qulity,
+    );
 
     const flag = await onFinishProp?.(res as ICroppedImage);
     if (flag !== false) {
@@ -114,16 +158,9 @@ export const CropDialog = (props: CropDialogProps) => {
   });
 
   return (
-    <Dialog
-      {...{ maxWidth: 'md', ...(dialogProps || {}), open, onClose }}
-    >
+    <Dialog {...{ maxWidth: 'md', ...(dialogProps || {}), open, onClose }}>
       <DialogTitle>
-        { TitleRender ? (
-          <TitleRender
-            title={title}
-            onClose={onClose}
-          />
-        ) : title }
+        {TitleRender ? <TitleRender title={title} onClose={onClose} /> : title}
       </DialogTitle>
       <DialogContent
         style={{
@@ -138,7 +175,8 @@ export const CropDialog = (props: CropDialogProps) => {
             width: 300,
             height: 300,
             ...(cropperContainerStyle || {}),
-          }}>
+          }}
+        >
           <Cropper
             {...restProps}
             image={imageInfo?.url}
@@ -177,9 +215,9 @@ export const CropDialog = (props: CropDialogProps) => {
             width={ref.current?.offsetWidth}
             defaultAspect={defaultAspect}
           />
-        ) }
+        )}
       </DialogContent>
-      { !!ActionsRender && (
+      {!!ActionsRender && (
         <ActionsRender
           actionsProps={actionsProps}
           onReset={onReset}
@@ -200,5 +238,3 @@ export const CropDialog = (props: CropDialogProps) => {
     </Dialog>
   );
 };
-
-CropDialog.displayName = 'iimm.Mui.ImageCrop.CropDialog';

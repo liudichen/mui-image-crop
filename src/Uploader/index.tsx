@@ -7,34 +7,31 @@ import { prefixCls } from '../utils';
 import type { UploaderProps as UploaderCommonProps } from '../types';
 
 export interface UploaderProps extends UploaderCommonProps {
-  accept?: {[key: string]: string[]},
-  disabled?: boolean,
-  onDropAccepted?: (files: File[], e: DropEvent) => void,
+  accept?: { [key: string]: string[] };
+  disabled?: boolean;
+  onDropAccepted?: (files: File[], e: DropEvent) => void;
 }
 
 export const Uploader = (props: React.PropsWithChildren<UploaderProps>) => {
-  const {
-    children,
-    className: classNameProp,
-    style,
-    ...restProps
-  } = props;
-  const { getInputProps, getRootProps } = useDropzone({ ...restProps, maxFiles: 1, multiple: false });
-  const className = classNames(prefixCls, {
-    [`${prefixCls}-select`]: true,
-    [`${prefixCls}-select-picture-card`]: true,
-    [`${prefixCls}-disabled`]: props.disabled,
-  }, classNameProp);
+  const { children, className: classNameProp, style, ...restProps } = props;
+  const { getInputProps, getRootProps } = useDropzone({
+    ...restProps,
+    maxFiles: 1,
+    multiple: false,
+  });
+  const className = classNames(
+    prefixCls,
+    {
+      [`${prefixCls}-select`]: true,
+      [`${prefixCls}-select-picture-card`]: true,
+      [`${prefixCls}-disabled`]: props.disabled,
+    },
+    classNameProp,
+  );
   return (
-    <div
-      {...getRootProps({ className, style })}
-    >
+    <div {...getRootProps({ className, style })}>
       <input {...getInputProps()} />
-      {
-        children
-      }
+      {children}
     </div>
   );
 };
-
-Uploader.displayName = 'iimm.Mui.ImageCrop.Uploader';

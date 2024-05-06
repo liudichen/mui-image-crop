@@ -2,57 +2,82 @@ import React from 'react';
 import { useMemoizedFn, useCreation, useUpdate, useSafeState } from 'ahooks';
 import { Box, Slider, Stack } from '@mui/material';
 import { SliderProps } from '@mui/material';
-import { IconZoomIn, IconZoomOut, IconAspectRatio, IconRotate2, IconRotateClockwise2 } from '@tabler/icons-react';
+import {
+  IconZoomIn,
+  IconZoomOut,
+  IconAspectRatio,
+  IconRotate2,
+  IconRotateClockwise2,
+} from '@tabler/icons-react';
 
 import { ICroppedImage, IMarkItem } from '../../types';
 
 type NumberChangeFn = (newValue: number) => void;
 
 export interface ToolbarRenderProps {
-  zoom: number,
-  onZoomChange: NumberChangeFn,
-  minZoom: number,
-  maxZoom: number,
-  zoomStep: number,
-  showZoomToolbar?: boolean,
-  rotation: number,
-  onRotationChange: NumberChangeFn,
-  rotateStep: number,
-  showRotateToolbar?: boolean,
-  defaultAspect?: number,
-  aspect: number,
-  onAspectChange: NumberChangeFn,
-  showAspectToolbar?: boolean,
-  aspectMarks: IMarkItem[],
-  onReset?: () => void,
-  onClose?: () => void,
-  width?: number | string,
+  zoom: number;
+  onZoomChange: NumberChangeFn;
+  minZoom: number;
+  maxZoom: number;
+  zoomStep: number;
+  showZoomToolbar?: boolean;
+  rotation: number;
+  onRotationChange: NumberChangeFn;
+  rotateStep: number;
+  showRotateToolbar?: boolean;
+  defaultAspect?: number;
+  aspect: number;
+  onAspectChange: NumberChangeFn;
+  showAspectToolbar?: boolean;
+  aspectMarks: IMarkItem[];
+  onReset?: () => void;
+  onClose?: () => void;
+  width?: number | string;
   onFinish: (value: ICroppedImage) => void | Promise<void>;
 }
 
 export const ToolbarRender = (props: ToolbarRenderProps) => {
   const {
-    zoom, onZoomChange, minZoom, maxZoom, zoomStep, showZoomToolbar,
-    rotation, onRotationChange, rotateStep, showRotateToolbar, defaultAspect,
-    aspect, onAspectChange, showAspectToolbar, aspectMarks,
+    zoom,
+    onZoomChange,
+    minZoom,
+    maxZoom,
+    zoomStep,
+    showZoomToolbar,
+    rotation,
+    onRotationChange,
+    rotateStep,
+    showRotateToolbar,
+    defaultAspect,
+    aspect,
+    onAspectChange,
+    showAspectToolbar,
+    aspectMarks,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    onReset, onClose, onFinish, width,
+    onReset,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    onClose,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    onFinish,
+    width,
   } = props;
   const update = useUpdate();
   const marks = useCreation(() => {
-    return (aspectMarks || []).sort((a, b) => b.value - a.value).map((item, index) => ({ value: index, label: item.label, aspect: item.value }));
-  }, [ aspectMarks ]);
+    return (aspectMarks || [])
+      .sort((a, b) => b.value - a.value)
+      .map((item, index) => ({ value: index, label: item.label, aspect: item.value }));
+  }, [aspectMarks]);
 
   const aspectProps = useCreation(() => {
     const result: Partial<SliderProps> = { min: 0, max: marks.length - 1, marks };
     result.valueLabelFormat = (v) => marks[v].label;
     return result;
-  }, [ marks ]);
+  }, [marks]);
   const calculateAspectSliderValue = useMemoizedFn((asp) => {
     const index = (aspectMarks || []).findIndex((item) => Math.abs(item.value - asp) < 0.1);
     return index === -1 ? 0 : index;
   });
-  const [ value, setValue ] = useSafeState(() => calculateAspectSliderValue(aspect));
+  const [value, setValue] = useSafeState(() => calculateAspectSliderValue(aspect));
   const onChange = useMemoizedFn((e, v) => {
     setValue(v);
     const aspect = marks[v]?.aspect ?? defaultAspect;
@@ -86,11 +111,11 @@ export const ToolbarRender = (props: ToolbarRenderProps) => {
     if (newValue !== value) {
       setValue(newValue);
     }
-  }, [ aspect ]);
+  }, [aspect]);
 
   React.useEffect(() => {
     update();
-  }, [ width ]);
+  }, [width]);
   return (
     <Box
       sx={{
@@ -98,10 +123,10 @@ export const ToolbarRender = (props: ToolbarRenderProps) => {
         width,
       }}
     >
-      { showZoomToolbar && (
+      {showZoomToolbar && (
         <Stack
-          direction='row'
-          alignItems='center'
+          direction="row"
+          alignItems="center"
           spacing={2}
           sx={{
             mr: 1,
@@ -112,12 +137,10 @@ export const ToolbarRender = (props: ToolbarRenderProps) => {
             sx={{
               cursor: zoom === minZoom ? 'not-allowed' : 'pointer',
             }}
-            role='button'
+            role="button"
             onClick={() => handleZoom('out')}
           >
-            <IconZoomOut
-              color={zoom === minZoom ? 'grey' : '#096dd9'}
-            />
+            <IconZoomOut color={zoom === minZoom ? 'grey' : '#096dd9'} />
           </Box>
           <Slider
             min={minZoom}
@@ -130,40 +153,32 @@ export const ToolbarRender = (props: ToolbarRenderProps) => {
             ]}
             // @ts-ignore
             onChange={(e, v) => onZoomChange(v)}
-            valueLabelDisplay='auto'
+            valueLabelDisplay="auto"
             valueLabelFormat={(v) => `${Math.round(v * 100)}%`}
           />
           <Box
             sx={{
               cursor: zoom === maxZoom ? 'not-allowed' : 'pointer',
             }}
-            role='button'
+            role="button"
             onClick={() => handleZoom('in')}
           >
-            <IconZoomIn
-              color={zoom === maxZoom ? 'grey' : '#096dd9'}
-            />
+            <IconZoomIn color={zoom === maxZoom ? 'grey' : '#096dd9'} />
           </Box>
         </Stack>
       )}
-      { showRotateToolbar && (
+      {showRotateToolbar && (
         <Stack
-          direction='row'
-          alignItems='center'
+          direction="row"
+          alignItems="center"
           spacing={2}
           sx={{
             mr: 1,
             mb: 2.5,
           }}
         >
-          <Box
-            sx={{ cursor: 'pointer' }}
-            onClick={() => handleRotate('right')}
-          >
-            <IconRotateClockwise2
-              color='#096dd9'
-              transform='rotate(-90,0,0)'
-            />
+          <Box sx={{ cursor: 'pointer' }} onClick={() => handleRotate('right')}>
+            <IconRotateClockwise2 color="#096dd9" transform="rotate(-90,0,0)" />
           </Box>
           <Slider
             min={0}
@@ -179,48 +194,25 @@ export const ToolbarRender = (props: ToolbarRenderProps) => {
               { value: 270, label: '270°' },
               { value: 360, label: '360°' },
             ]}
-            valueLabelDisplay='auto'
+            valueLabelDisplay="auto"
             valueLabelFormat={(v) => `${v}°`}
           />
-          <Box
-            sx={{ cursor: 'pointer' }}
-            onClick={() => handleRotate('left')}
-          >
-            <IconRotate2
-              color='#096dd9'
-              transform='rotate(90,0,0)'
-            />
+          <Box sx={{ cursor: 'pointer' }} onClick={() => handleRotate('left')}>
+            <IconRotate2 color="#096dd9" transform="rotate(90,0,0)" />
           </Box>
         </Stack>
       )}
-      { showAspectToolbar && aspectMarks.length && (
-        <Stack
-          direction='row'
-          alignItems='center'
-          spacing={2}
-          sx={{ mr: 1, mb: 3 }}
-        >
+      {showAspectToolbar && aspectMarks.length && (
+        <Stack direction="row" alignItems="center" spacing={2} sx={{ mr: 1, mb: 3 }}>
           <Box>
-            <IconAspectRatio
-              color='#096dd9'
-            />
+            <IconAspectRatio color="#096dd9" />
           </Box>
-          <Slider
-            value={value}
-            {...aspectProps}
-            onChange={onChange}
-            valueLabelDisplay='auto'
-          />
+          <Slider value={value} {...aspectProps} onChange={onChange} valueLabelDisplay="auto" />
           <Box>
-            <IconAspectRatio
-              color='#096dd9'
-              transform='rotate(90,0,0)'
-            />
+            <IconAspectRatio color="#096dd9" transform="rotate(90,0,0)" />
           </Box>
         </Stack>
       )}
     </Box>
   );
 };
-
-ToolbarRender.displayName = 'iimm.Mui.ImageCrop.CropDialog.DefaultToolbarRender';

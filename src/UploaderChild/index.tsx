@@ -10,5 +10,3 @@ export const UploaderChild = () => {
     </div>
   );
 };
-
-UploaderChild.displayName = 'iimm.Mui.ImageCrop.DefaultUploaderChildren';

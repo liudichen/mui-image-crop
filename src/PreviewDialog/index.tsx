@@ -4,22 +4,16 @@ import type { DialogProps } from '@mui/material';
 import { IconLogout } from '@tabler/icons-react';
 
 export interface PreviewDialogProps extends Omit<DialogProps, 'onClose'> {
-  src?: string,
-  filename?: string,
-  onClose?: () => void | Promise<void>,
+  src?: string;
+  filename?: string;
+  onClose?: () => void | Promise<void>;
 }
 
 export const PreviewDialog = (props: PreviewDialogProps) => {
   const { src, open, onClose, filename, ...restProps } = props;
   return (
-    <Dialog
-      open={open}
-      onClose={onClose}
-      {...restProps}
-    >
-      <DialogTitle>
-        {filename || 'Image Preview'}
-      </DialogTitle>
+    <Dialog open={open} onClose={onClose} {...restProps}>
+      <DialogTitle>{filename || 'Image Preview'}</DialogTitle>
       <DialogContent
         sx={{
           width: '100%',
@@ -41,15 +35,10 @@ export const PreviewDialog = (props: PreviewDialogProps) => {
         />
       </DialogContent>
       <DialogActions>
-        <Button
-          variant='outlined'
-          onClick={onClose}
-        >
+        <Button variant="outlined" onClick={onClose}>
           <IconLogout />
         </Button>
       </DialogActions>
     </Dialog>
   );
 };
-
-PreviewDialog.displayName = 'iimm.Mui.ImageCrop.PreviewDialog';
